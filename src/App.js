@@ -430,6 +430,7 @@ const ArtistPickSection = styled.div`
   @media (max-width: 900px) {
     margin-left: 0;
     margin-top: 32px;
+    width: 100%;
   }
 `;
 
@@ -483,11 +484,19 @@ const ArtistPickCard = styled.div`
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
+  ${'' /* width: 100%; */}
   min-height: 220px;
+  width: 100%;
   overflow: hidden;
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 32px rgba(0,0,0,0.24);
+  }
+  @media (max-width: 768px) {
+    height: 240px;
+  }
+  @media (max-width: 480px) {
+    height: 200px;
   }
 `;
 
