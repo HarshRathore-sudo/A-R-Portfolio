@@ -1,2 +1,3 @@
 # A&R-Portfolio
-# [LINK]([https://harshrathoremixtape.netlify.app/])
+https://harshrathoremixtape.netlify.app/
+
