@@ -29,11 +29,13 @@ const popular = [
     stat: 'Intro',
     duration: ' ',
     section: 'mic-check-section',
-    details: `I'm Harsh Rathore — currently working as a software developer, but with roots (and heart) in the world of artist and event management.
+    details: `I'm Harsh Rathore — currently working as a software developer while side-by-side heading the B2B section at Dole's Music, an end-to-end audio solutions company. But my roots (and heart) are in the world of artist and event management.
 
 My journey into management began in college, where I served as the fest convener. I led teams, handled budgets, booked artists, and helped brands like <strong>Rajasthan Royals</strong>, <strong>Okinawa</strong>, and <strong>Linc</strong> create campaigns that actually made sense for the crowd. It was part creative, part chaos — and I loved every second of it.
 
 For the past 1.5 years, I've been in tech, where I've built systems, solved problems under pressure, and learned how to stay calm when things break five minutes before launch. Turns out, that's pretty handy off-stage too.
+
+Currently, I'm balancing my tech role with leading Dole's Music's B2B operations — managing relationships with production houses and advertising agencies, and overseeing audio solutions from lyrics to final mastering. It's been a great way to stay connected to the creative industry while building my technical skills.
 
 Now, I'm looking to shift back into the space I've always felt at home in. I enjoy being the one who makes things run — the organiser, the communicator, the person who handles 12 things at once and still has a backup plan (and a charger).
 
@@ -57,7 +59,7 @@ Simply put: I'm built for management — grounded, quick on my feet, and ready t
     id: 'hustleTape',
     cover: '/assets/1.png',
     title: 'The Hustle Tape (Experience)',
-    stat: 'Vivacity + Fretron grind',
+    stat: 'Vivacity + Fretron + Dole\'s Music',
     duration: '2021 – Present',
     section: 'hustle-tape-section',
     details: `
@@ -69,6 +71,12 @@ Simply put: I'm built for management — grounded, quick on my feet, and ready t
       • Partnered with high-profile brands like <strong>Rajasthan Royals</strong> and <strong>Okinawa</strong> to create impactful on-ground brand activations and marketing campaigns.<br>
       • Balanced creative energy with structured problem-solving — responding in real time to unexpected challenges while keeping the experience seamless for <strong>6,000+ attendees</strong>.<br><br>
   
+      <strong>🎵 Dole's Music – B2B Head</strong><br>
+      • Heading the B2B section at Dole's Music, an end-to-end audio solutions company specializing in lyrics, composition, background score, and mixing & mastering.<br>
+      • Managing relationships with production houses and advertising agencies to deliver high-quality audio solutions for campaigns and projects.<br>
+      • Leading business development initiatives to expand the company's client base and market presence.<br>
+      • Coordinating with creative teams to ensure seamless delivery of audio projects from concept to final master.<br><br>
+
       <strong>💻 Fretron Pvt. Ltd. – Frontend Developer Intern</strong><br>
       • Developed and optimized UI components using modern frontend frameworks.<br>
       • Worked under tight deadlines to troubleshoot and ship production-ready features.<br>
