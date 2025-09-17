@@ -2,105 +2,98 @@ import React, { useRef, useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { FaSpotify, FaEnvelope, FaLinkedin, FaCheckCircle, FaRandom, FaStepBackward, FaStepForward, FaPause, FaListUl, FaMobileAlt, FaExpand, FaSearch, FaWhatsapp, FaTimes } from 'react-icons/fa';
 
+// Reference map for different versions
+const refMap = {
+  "representMgmt": [
+    {
+      id: 'micCheck',
+      cover: '/assets/represent-mgmt/1.png'
+    },
+    {
+      id: 'roots',  
+      cover: '/assets/represent-mgmt/3.png'
+    },
+    {
+      id: 'hustleTape',
+      cover: '/assets/represent-mgmt/4.png'
+    },
+    {
+      id: 'finalVerse',
+      cover: '/assets/represent-mgmt/2.png'
+    },
+  ]
+};
 // Real Spotify verified badge SVG
-const VerifiedBadge = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style={{marginLeft: 8, verticalAlign: 'middle'}}>
-    <g>
-      <path
-        d="M12 2.25c.41 0 .81.21 1.03.56l1.38 2.1c.18.28.5.45.84.45h2.46c.59 0 1.07.48 1.07 1.07v2.46c0 .34.17.66.45.84l2.1 1.38c.35.22.56.62.56 1.03s-.21.81-.56 1.03l-2.1 1.38a1.07 1.07 0 0 0-.45.84v2.46c0 .59-.48 1.07-1.07 1.07h-2.46a1.07 1.07 0 0 0-.84.45l-1.38 2.1a1.07 1.07 0 0 1-1.03.56c-.41 0-.81-.21-1.03-.56l-1.38-2.1a1.07 1.07 0 0 0-.84-.45H5.25A1.07 1.07 0 0 1 4.18 16.5v-2.46a1.07 1.07 0 0 0-.45-.84l-2.1-1.38A1.07 1.07 0 0 1 1.07 12c0-.41.21-.81.56-1.03l2.1-1.38c.28-.18.45-.5.45-.84V5.25c0-.59.48-1.07 1.07-1.07h2.46c.34 0 .66-.17.84-.45l1.38-2.1A1.07 1.07 0 0 1 12 2.25z"
-        fill="#1DA1F2"
-      />
-      <path
-        d="M10.2 14.2l-2-2a1 1 0 1 1 1.4-1.4l1.3 1.3 4.1-4.1a1 1 0 1 1 1.4 1.4l-4.8 4.8a1 1 0 0 1-1.4 0z"
-        fill="#fff"
-      />
-    </g>
-  </svg>
-);
 
 const profileImage = '/assets/profile.jpeg';
 const spotifyProfile = 'https://open.spotify.com/user/31ajgbpqwxp4t5kvc33cly6ylqoe?si=54c518a8437c4dc2';
 
-const popular = [
+// Default values for popular items
+const defaultPopular = [
   {
-    id: 'micCheck',
-    cover: '/assets/4.png',
-    title: 'Mic Check (Overview)',
-    stat: 'Intro',
-    duration: ' ',
-    section: 'mic-check-section',
-    details: `I'm Harsh Rathore — currently working as a software developer while side-by-side heading the B2B section at Dole's Music, an end-to-end audio solutions company. But my roots (and heart) are in the world of artist and event management.
+    id: 'currentRole',
+    cover: '/assets/default/1.png',
+    title: 'Studio Sessions (Current Work)',
+    stat: 'Music Marketing & Strategy',
+    duration: '2023 to Present',
+    section: 'current-section',
+    details: `<strong>🎵 Music Marketing at Doles Music</strong><br><br>
+    • Working on release strategies across DSPs (Spotify, Apple Music, JioSaavn)<br>
+    • Running targeted Meta/Google campaigns to get more ears on our releases<br>
+    • Managing B2B partnerships and brand collaborations for music catalog<br>
+    • Building relationships with playlist curators and music blogs<br>
+    • Providing A&R input on commercial potential of demos<br>
+    • Creating campaign reports using real streaming data<br><br>
 
-My journey into management began in college, where I served as the fest convener. I led teams, handled budgets, booked artists, and helped brands like <strong>Rajasthan Royals</strong>, <strong>Okinawa</strong>, and <strong>Linc</strong> create campaigns that actually made sense for the crowd. It was part creative, part chaos — and I loved every second of it.
-
-For the past 1.5 years, I've been in tech, where I've built systems, solved problems under pressure, and learned how to stay calm when things break five minutes before launch. Turns out, that's pretty handy off-stage too.
-
-Currently, I'm balancing my tech role with leading Dole's Music's B2B operations — managing relationships with production houses and advertising agencies, and overseeing audio solutions from lyrics to final mastering. It's been a great way to stay connected to the creative industry while building my technical skills.
-
-Now, I'm looking to shift back into the space I've always felt at home in. I enjoy being the one who makes things run — the organiser, the communicator, the person who handles 12 things at once and still has a backup plan (and a charger).
-
-Simply put: I'm built for management — grounded, quick on my feet, and ready to bring creative visions to life without the drama (unless it's part of the act).`
+    <em>Currently focused on South Asian indie/electronic crossover space. Learning what makes people hit play and what keeps them listening.</em>`
   },
   {
-    id: 'roots',
-    cover: '/assets/3.png',
-    title: 'Roots (Education & Background)',
-    stat: 'Where it all started',
-    duration: 'Up to 2022',
-    section: 'roots-section',
-    details: `
-      My foundation blends technical education with a passion for creativity and real-world execution. While academics sharpened my problem-solving mindset, it was the hustle behind college fests that gave me a crash course in management, leadership, and people skills.<br><br>
-      <strong>🎓 Education:</strong><br>
-      • Completed my 12th from <strong>The Sacred Heart Convent School</strong> in Sri Ganganagar, Rajasthan.<br>
-      • Pursuing B.Tech in <strong>Computer Science Engineering</strong> from <strong>The LNM Institute of Information Technology (LNMIIT)</strong>, Jaipur (Batch of 2020–2024).
-    `
-  },
-  {
-    id: 'hustleTape',
-    cover: '/assets/1.png',
-    title: 'The Hustle Tape (Experience)',
-    stat: 'Vivacity + Fretron + Dole\'s Music',
-    duration: '2021 – Present',
-    section: 'hustle-tape-section',
-    details: `
-      <strong>🎤 Vivacity – Fest Convener</strong><br>
-      • Led the overall planning and execution of Vivacity — one of Rajasthan's biggest college cultural fests.<br>
-      • Spearheaded the sponsorship and marketing team, securing <strong>INR 30 lakhs+</strong> in sponsorships — making it one of the most well-funded editions of the fest.<br>
-      • Built and managed a team of <strong>100+ students</strong> across production, promotions, hospitality, and logistics.<br>
-      • Managed budgeting, timelines, artist coordination, and show execution — from concept to curtain call.<br>
-      • Partnered with high-profile brands like <strong>Rajasthan Royals</strong> and <strong>Okinawa</strong> to create impactful on-ground brand activations and marketing campaigns.<br>
-      • Balanced creative energy with structured problem-solving — responding in real time to unexpected challenges while keeping the experience seamless for <strong>6,000+ attendees</strong>.<br><br>
-  
-      <strong>🎵 Dole's Music – B2B Head</strong><br>
-      • Heading the B2B section at Dole's Music, an end-to-end audio solutions company specializing in lyrics, composition, background score, and mixing & mastering.<br>
-      • Managing relationships with production houses and advertising agencies to deliver high-quality audio solutions for campaigns and projects.<br>
-      • Leading business development initiatives to expand the company's client base and market presence.<br>
-      • Coordinating with creative teams to ensure seamless delivery of audio projects from concept to final master.<br><br>
+    id: 'liveExperience',
+    cover: '/assets/default/2.png',
+    title: 'Green Room Chronicles (Live Shows)',
+    stat: '6000+ capacity events',
+    duration: '2021 to 2023',
+    section: 'live-section',
+    details: `<strong>🎤 Artist Relations & Live Production at Vivacity</strong><br><br>
+    • Booked and managed 15+ artists across multiple genres (₹5L to ₹15L fee range)<br>
+    • Negotiated contracts, technical riders, and hospitality arrangements<br>
+    • Built relationships with booking agents and artist managers<br>
+    • Secured ₹30L+ in sponsorships from brands like Rajasthan Royals<br>
+    • Coordinated with sound, lighting, and stage production teams<br>
+    • Handled crisis management when things went wrong (and they always do)<br><br>
 
-      <strong>💻 Fretron Pvt. Ltd. – Frontend Developer Intern</strong><br>
-      • Developed and optimized UI components using modern frontend frameworks.<br>
-      • Worked under tight deadlines to troubleshoot and ship production-ready features.<br>
-      • Collaborated closely with cross-functional teams to deliver clean, scalable, and maintainable code — gaining hands-on experience in a fast-paced tech environment.
-    `
+    <strong>Key Learning:</strong> Artists need more than just a stage and mic. Understanding their tech requirements, green room needs, and team dynamics builds real trust. This taught me how the live music business actually works.`
   },
   {
-    id: 'finalVerse',
-    cover: '/assets/5.png', // Mic drop vibes
-    title: 'Final Verse (Why Hire Me)',
-    stat: 'The pitch',
-    duration: 'Now Streaming',
-    section: 'final-verse-section',
-    details: `
-      Every artist drops a final verse that sticks. Consider this mine.<br><br>
-      I bring a blend of creative chaos and structured execution. I've led 100+ people, handled lakhs in budgets, locked in headline acts, and delivered high-stakes events — all while staying chill enough to make Plan B look like Plan A.<br><br>
-      I'm also a software developer — which means I don't just think fast, I build fast. I know how to troubleshoot when things break (on stage *or* in prod), how to keep a team together when it's all on fire, and how to keep clients, artists, and collaborators in sync.<br><br>
-      Why hire me?<br>
-      Because I'm the person who:<br>
-      • Actually enjoys solving problems.<br>
-      • Knows when to take the lead, and when to take the fall.<br>
-      • Makes the vibe work — for the team, the artist, and the brand.<br><br>
-      TL;DR: I'm not just "interested" in this role — I'm built for it. I've done it before. I've missed it. Now I'm back — with better playlists and better backup plans.
-    `
+    id: 'techAdvantage',
+    cover: '/assets/default/3.png',
+    title: 'Code & Chords (Tech Skills)',
+    stat: 'Music + Tech intersection',
+    duration: 'Competitive advantage',
+    section: 'tech-section',
+    details: `<strong>💻 Why Being a Developer Helps in Music</strong><br><br>
+    • Can analyze streaming data and spot growth patterns others might miss<br>
+    • Build artist websites, EPKs, and digital experiences from scratch<br>
+    • Understand how Spotify's algorithm works and how to work with it<br>
+    • Bridge between creative and technical teams effectively<br>
+    • Automate marketing workflows that usually take hours<br>
+    • Deep understanding of digital platforms changing the music industry<br><br>
+
+    <strong>Perfect for:</strong> Digital first labels, music tech startups, data driven A&R teams, and streaming platforms that need someone who gets both music and code.`
+  },
+  {
+    id: 'vision',
+    cover: '/assets/default/4.png',
+    title: 'Demo Tape (Future Plans)',
+    stat: 'Next 2 years',
+    duration: 'Industry goals',
+    section: 'vision-section',
+    details: `<strong>What I Bring From Day One:</strong><br><br>
+    I'm hungry to learn and haven't been worn down by industry politics yet. I grew up with streaming, so understanding Spotify and Apple Music comes naturally to me. I've managed real budgets and know how P&L works from running events.<br><br>
+
+    I believe in putting artists first, but I also understand this is a business that needs to make money. I'm ready for the grind: late nights at shows, early morning meetings, whatever it takes to get the job done.<br><br>
+
+    Coming from outside the traditional music industry path means I see things differently. Sometimes that fresh perspective is exactly what's needed. I'm not trying to skip steps or fake my way in. Just ready to start at the bottom and work my way up by proving myself every day.`
   }
   // {
   //   id: 'crewLove',
@@ -114,8 +107,8 @@ Simply put: I'm built for management — grounded, quick on my feet, and ready t
 ];
 const artistPick = {
   image: '/assets/viva-logo.jpeg',
-  desc: 'Vivacity 2023',
-  meta: 'Posted by Harsh Rathore'
+  desc: 'Vivacity - Artist Relations Bootcamp',
+  meta: 'Where I learned the live music business'
 };
 
 
@@ -143,7 +136,7 @@ const StickyHeader = styled.div`
   height: 60px;
   transition: all 0.3s ease;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transform: translateY(${props => props.show ? '0' : '-100%'});
+  transform: translateY(${props => props.$show ? '0' : '-100%'});
   @media (max-width: 768px) {
     padding: 6px 16px;
     gap: 12px;
@@ -281,8 +274,9 @@ const NameBlock = styled.div`
     gap: 12px;
     @media (max-width: 768px) {
       font-size: 2.2rem;
-      flex-direction: column;
-      gap: 4px;
+      flex-direction: row;
+      gap: 8px;
+      justify-content: center;
     }
   }
   .verified {
@@ -382,7 +376,7 @@ const PopularRow = styled.div`
   border-radius: 8px;
   transition: background 0.2s;
   cursor: pointer;
-  background: ${({active}) => active ? '#232323' : 'transparent'};
+  background: ${({$active}) => $active ? '#232323' : 'transparent'};
   &:hover {
     background: #232323;
   }
@@ -966,8 +960,8 @@ const ModalOverlay = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  opacity: ${props => props.show ? 1 : 0};
-  visibility: ${props => props.show ? 'visible' : 'hidden'};
+  opacity: ${props => props.$show ? 1 : 0};
+  visibility: ${props => props.$show ? 'visible' : 'hidden'};
   transition: opacity 0.3s ease, visibility 0.3s ease;
 `;
 
@@ -975,7 +969,7 @@ const ModalContent = styled.div`
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
-  transform: ${props => props.show ? 'scale(1)' : 'scale(0.9)'};
+  transform: ${props => props.$show ? 'scale(1)' : 'scale(0.9)'};
   transition: transform 0.3s ease;
 `;
 
@@ -1016,8 +1010,8 @@ const VideoModalOverlay = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  opacity: ${props => props.show ? 1 : 0};
-  visibility: ${props => props.show ? 'visible' : 'hidden'};
+  opacity: ${props => props.$show ? 1 : 0};
+  visibility: ${props => props.$show ? 'visible' : 'hidden'};
   transition: opacity 0.3s, visibility 0.3s;
 `;
 const VideoModalContent = styled.div`
@@ -1052,7 +1046,8 @@ const VideoIframe = styled.iframe`
 
 
 function App() {
-  const sectionRefs = useRef(popular.map(() => React.createRef()));
+  const [popular, setPopular] = useState(defaultPopular);
+  const [sectionRefs, setSectionRefs] = useState([]);
   const vibeCardRef = useRef();
   const [activeIdx, setActiveIdx] = useState(0);
   const [scrollPercent, setScrollPercent] = useState(0);
@@ -1060,17 +1055,53 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [showVideoModal, setShowVideoModal] = useState(false);
 
+  // Initialize section refs
+  useEffect(() => {
+    setSectionRefs(popular.map(() => React.createRef()));
+  }, [popular]);
+
+  // Handle URL parameters and update popular items
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const refParam = urlParams.get('ref');
+    
+    if (refParam && refMap[refParam]) {
+      // Create a map of the reference items by their id for easy lookup
+      const refItemsMap = refMap[refParam].reduce((acc, item) => {
+        acc[item.id] = item;
+        return acc;
+      }, {});
+
+      // Merge reference items with default items
+      const updatedPopular = defaultPopular.map(item => {
+        // If the item exists in the reference map, merge it with the default item
+        const refItem = refItemsMap[item.id];
+        if (refItem) {
+          return {
+            ...item,  // Keep all default properties
+            cover: refItem.cover  // Override only the cover
+          };
+        }
+        return item;
+      });
+      
+      setPopular(updatedPopular);
+    }
+  }, []);
+
   // Scroll to section on click
   const handleRowClick = idx => {
-    const element = sectionRefs.current[idx].current;
-    const offset = 20;
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    if (sectionRefs[idx]?.current) {
+      const element = sectionRefs[idx].current;
+      const offset = 20;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    });
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   // Handle artist pick click
@@ -1092,18 +1123,21 @@ function App() {
   // Sync active row, progress bar, and sticky header with scroll
   useEffect(() => {
     const handleScroll = () => {
-      const offsets = sectionRefs.current.map(ref => ref.current.getBoundingClientRect().top);
+      if (sectionRefs.length === 0) return;
+
+      const offsets = sectionRefs.map(ref => ref.current?.getBoundingClientRect().top ?? Infinity);
       const active = offsets.findIndex((top, idx) => top > 80 && (idx === 0 || offsets[idx-1] <= 80));
       if (active === -1) {
         setActiveIdx(offsets.length - 1);
       } else {
         setActiveIdx(Math.max(0, active - 1));
       }
+
       // Progress bar: percent through resume sections
-      const total = sectionRefs.current.length;
+      const total = sectionRefs.length;
       let percent = 0;
       if (total > 1) {
-        const sectionTops = sectionRefs.current.map(ref => ref.current.getBoundingClientRect().top + window.scrollY);
+        const sectionTops = sectionRefs.map(ref => ref.current?.getBoundingClientRect().top ?? 0);
         const scrollY = window.scrollY + 100;
         for (let i = 0; i < total - 1; i++) {
           if (scrollY >= sectionTops[i] && scrollY < sectionTops[i+1]) {
@@ -1114,13 +1148,15 @@ function App() {
         if (scrollY >= sectionTops[total-1]) percent = 1;
       }
       setScrollPercent(percent);
+      
       // Sticky header - adjusted threshold to 180px
       setShowSticky(window.scrollY > 180);
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [sectionRefs]);
 
   // Calculate time for progress bar (0:00 to 4:11)
   const totalSeconds = 4 * 60 + 11;
@@ -1149,15 +1185,15 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <StickyHeader show={showSticky}>
+      <StickyHeader $show={showSticky}>
         <StickyProfile src={profileImage} alt="Harsh Rathore" onClick={handleProfileClick} />
         <StickyName>
-          Harsh Rathore <span className="verified"><VerifiedBadge /></span>
+          Harsh Rathore
         </StickyName>
         <StickySpotifyBtn href={spotifyProfile} target="_blank" rel="noopener noreferrer" title="Open on Spotify">
           <FaSpotify size={20} />
         </StickySpotifyBtn>
-        <StickyFollowBtn onClick={handleFollowClick}>Follow</StickyFollowBtn>
+        <StickyFollowBtn onClick={handleFollowClick}>Connect</StickyFollowBtn>
       </StickyHeader>
       <HeaderGradient>
         <HeaderContent>
@@ -1165,14 +1201,13 @@ function App() {
           <NameBlock>
             <h1>
               Harsh Rathore
-              <span className="verified"><VerifiedBadge /></span>
             </h1>
-            {/* <div className="tagline">{tagline}</div> */}
+            <div className="tagline">Music Marketing • Breaking Into A&R • Tech-Savvy</div>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <SpotifyBtn href={spotifyProfile} target="_blank" rel="noopener noreferrer">
                 <FaSpotify size={22} /> Open on Spotify
               </SpotifyBtn>
-              <BigFollowBtn onClick={handleFollowClick}>Follow</BigFollowBtn>
+              <BigFollowBtn onClick={handleFollowClick}>Connect</BigFollowBtn>
             </div>
           </NameBlock>
         </HeaderContent>
@@ -1184,7 +1219,7 @@ function App() {
             {popular.map((item, idx) => (
               <PopularRow
                 key={item.id}
-                active={activeIdx === idx}
+                $active={activeIdx === idx}
                 onClick={() => handleRowClick(idx)}
               >
                 <PopNum>{idx + 1}</PopNum>
@@ -1212,7 +1247,11 @@ function App() {
       </MainSection>
       <ResumeSections>
         {popular.map((item, idx) => (
-          <ResumeSection ref={sectionRefs.current[idx]} id={item.section} key={item.id}>
+          <ResumeSection 
+            ref={sectionRefs[idx]} 
+            id={item.section} 
+            key={item.id}
+          >
             <SectionHeader>{item.title}</SectionHeader>
             <SectionSub>{item.stat} &middot; {item.duration}</SectionSub>
             <SectionDetails dangerouslySetInnerHTML={{ __html: item.details }} />
@@ -1221,11 +1260,11 @@ function App() {
       </ResumeSections>
       <VibeCard ref={vibeCardRef}>
         <VibeLeft>
-          <VibeHeading>Let's Connect & Vibe!</VibeHeading>
+          <VibeHeading>Open to Music Opportunities</VibeHeading>
           <VibeDesc>
-            Into music, madness, or making cool things happen? Same. Whether it's curating shows, building campaigns, or trading playlists—I'm always up for a good collab.
-            Got a project? An idea? A wild vision?
-            Slide into my inbox—let's make it loud.
+            Currently building my music industry career through B2B marketing at Doles Music.
+            Open to opportunities in artist marketing, label digital strategy, or music tech.
+            Got a role that needs someone who understands both artists and algorithms? Let's connect.
           </VibeDesc>
           <VibeContactLinks>
             <VibeContactBtn 
@@ -1243,7 +1282,7 @@ function App() {
             </VibeContactBtn>
             <VibeContactSpotifyBtn href={spotifyProfile} target="_blank" rel="noopener noreferrer">
               <FaSpotify size={22} color="#fff" style={{ flexShrink: 0}} />
-              <span style={{fontSize: 14, whiteSpace: 'nowrap', flexShrink: 0}}>For Intense Vibing</span>
+              <span style={{fontSize: 14, whiteSpace: 'nowrap', flexShrink: 0}}>Music Profile</span>
             </VibeContactSpotifyBtn>
           </VibeContactLinks>
         </VibeLeft>
@@ -1278,8 +1317,8 @@ function App() {
         <PlayerInfo>
           <PlayerCover src={popular[activeIdx].cover} alt={popular[activeIdx].title} />
           <PlayerText>
-            <PlayerTitle>{popular[activeIdx].title}</PlayerTitle>
-            <PlayerSub>{popular[activeIdx].stat}</PlayerSub>
+            <PlayerTitle>Experience Timeline</PlayerTitle>
+            <PlayerSub>Scroll to navigate</PlayerSub>
           </PlayerText>
           <PlayerCheck size={18} />
         </PlayerInfo>
@@ -1309,8 +1348,8 @@ function App() {
         </PlayerRight>
       </FooterPlayer>
       
-      <ModalOverlay show={showModal} onClick={handleCloseModal}>
-        <ModalContent show={showModal} onClick={e => e.stopPropagation()}>
+      <ModalOverlay $show={showModal} onClick={handleCloseModal}>
+        <ModalContent $show={showModal} onClick={e => e.stopPropagation()}>
           <CloseButton onClick={handleCloseModal}>
             <FaTimes />
           </CloseButton>
@@ -1319,15 +1358,12 @@ function App() {
       </ModalOverlay>
 
       {/* Floating YouTube Video Modal */}
-      <VideoModalOverlay show={showVideoModal}
+      <VideoModalOverlay 
+        $show={showVideoModal}
         onClick={() => setShowVideoModal(false)}
         style={{pointerEvents: showVideoModal ? 'auto' : 'none'}}
       >
         <VideoModalContent onClick={e => e.stopPropagation()}>
-          {/* <VideoModalActions>
-            <VideoModalButton onClick={() => window.open('https://www.youtube.com/watch?v=E64TKUqgi_4', '_blank')}>Full Screen</VideoModalButton>
-            <VideoModalButton onClick={() => setShowVideoModal(false)}>Close</VideoModalButton>
-          </VideoModalActions> */}
           <VideoIframe
             src={showVideoModal ? "https://www.youtube.com/embed/E64TKUqgi_4?autoplay=1" : undefined}
             title="Vivacity 23 Video"
