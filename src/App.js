@@ -35,17 +35,16 @@ const defaultPopular = [
     cover: '/assets/default/1.png',
     title: 'Studio Sessions (Current Work)',
     stat: 'Music Marketing & Strategy',
-    duration: '2023 to Present',
+    duration: '2025 to Present',
     section: 'current-section',
     details: `<strong>🎵 Music Marketing at Doles Music</strong><br><br>
-    • Working on release strategies across DSPs (Spotify, Apple Music, JioSaavn)<br>
-    • Running targeted Meta/Google campaigns to get more ears on our releases<br>
+    • Working across marketing, partnerships, and new strategies<br>
+    • Running campaigns and collaborations for indie and commercial artists<br>
     • Managing B2B partnerships and brand collaborations for music catalog<br>
-    • Building relationships with playlist curators and music blogs<br>
-    • Providing A&R input on commercial potential of demos<br>
-    • Creating campaign reports using real streaming data<br><br>
-
-    <em>Currently focused on South Asian indie/electronic crossover space. Learning what makes people hit play and what keeps them listening.</em>`
+    • Bringing ideas to life that move music forward<br>
+ 
+    <em>Currently focused on indie/electronic crossover space. Learning what makes people hit play and what keeps them listening.</em>`
+ 
   },
   {
     id: 'liveExperience',
