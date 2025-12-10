@@ -37,7 +37,7 @@ const defaultPopular = [
     stat: 'Music Marketing & Strategy',
     duration: '2025 to Present',
     section: 'current-section',
-    details: `<strong>🎵 Music Marketing at Doles Music</strong><br><br>
+    details: `<strong>Music Marketing at Doles Music</strong><br><br>
     • Working across marketing, partnerships, and new strategies<br>
     • Running campaigns and collaborations for indie and commercial artists<br>
     • Managing B2B partnerships and brand collaborations for music catalog<br>
@@ -53,7 +53,7 @@ const defaultPopular = [
     stat: '6000+ capacity events',
     duration: '2021 to 2023',
     section: 'live-section',
-    details: `<strong>🎤 Artist Relations & Live Production at Vivacity</strong><br><br>
+    details: `<strong>Artist Relations & Live Production at Vivacity</strong><br><br>
     • Booked and managed 15+ artists across multiple genres (₹5L to ₹15L fee range)<br>
     • Negotiated contracts, technical riders, and hospitality arrangements<br>
     • Built relationships with booking agents and artist managers<br>
@@ -70,7 +70,7 @@ const defaultPopular = [
     stat: 'Music + Tech intersection',
     duration: 'Competitive advantage',
     section: 'tech-section',
-    details: `<strong>💻 Why Being a Developer Helps in Music</strong><br><br>
+    details: `<strong>Why Being a Developer Helps in Music</strong><br><br>
     • Can analyze streaming data and spot growth patterns others might miss<br>
     • Build artist websites, EPKs, and digital experiences from scratch<br>
     • Understand how Spotify's algorithm works and how to work with it<br>
