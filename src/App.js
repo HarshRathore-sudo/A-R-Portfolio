@@ -806,12 +806,16 @@ const VibeDesc = styled.div`
   font-size: 1.08rem;
   font-weight: 500;
   text-align: left;
-  max-width: 600px; // Increase this value
-  min-width: 400px; // Optionally set a min-width
+  max-width: 600px;
   margin: 18px 0 0 0;
   opacity: 0.92;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   line-height: 1.6;
+  @media (max-width: 800px) {
+    max-width: 100%;
+    font-size: 1rem;
+    word-wrap: break-word;
+  }
 `;
 const VibeContactLinks = styled.div`
   display: flex;
