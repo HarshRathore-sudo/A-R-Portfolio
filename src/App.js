@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { FaSpotify, FaEnvelope, FaLinkedin, FaCheckCircle, FaRandom, FaStepBackward, FaStepForward, FaPause, FaListUl, FaMobileAlt, FaExpand, FaSearch, FaWhatsapp, FaTimes, FaPlay, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaSpotify, FaEnvelope, FaLinkedin, FaCheckCircle, FaRandom, FaStepBackward, FaStepForward, FaPause, FaListUl, FaMobileAlt, FaExpand, FaSearch, FaWhatsapp, FaTimes, FaPlay, FaChevronDown } from 'react-icons/fa';
 
 // Reference map for different versions
 const refMap = {
@@ -760,20 +760,7 @@ const ExpandableContent = styled.div`
   transition: max-height 0.4s ease, opacity 0.3s ease;
 `;
 
-const SectionFadeIn = styled.div`
-  animation: fadeInUp 0.5s ease forwards;
-  opacity: 0;
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-`;
+
 
 const VibeCard = styled.div`
   max-width: 900px;
