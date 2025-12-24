@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Rathore - CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff;
+            color: #1a1a1a;
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+        
+        .cv-container {
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 24px 32px;
+            background: #fff;
+        }
+        
+        /* Header Section */
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            /* gap: 10px; */
+            padding-bottom: 16px;
+            border-bottom: 2px solid #1DB954;
+            margin-bottom: 16px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .header-left h1 {
+            font-size: 28pt;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+        
+        .header-left .tagline {
+            font-size: 12pt;
+            color: #1DB954;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .header-left .summary {
+            font-size: 9.5pt;
+            color: #444;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+        
+        .header-right {
+            text-align: right;
+            font-size: 9pt;
+        }
+        
+        .header-right a {
+            display: flex;
+            color: #1a1a1a;
+            text-decoration: none;
+            margin-bottom: 5px;
+            transition: color 0.2s;
+        }
+        
+        .header-right a:hover {
+            color: #1DB954;
+        }
+        
+        .header-right .icon {
+            display: inline-block;
+            width: 14px;
+            margin-right: 6px;
+            text-align: center;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #1DB954;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        /* Experience Items */
+        .experience-item {
+            margin-bottom: 14px;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+        }
+        
+        .experience-title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .experience-duration {
+            font-size: 9pt;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .experience-subtitle {
+            font-size: 9.5pt;
+            color: #1DB954;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .experience-details {
+            font-size: 9pt;
+            color: #444;
+            line-height: 1.5;
+        }
+        
+        .experience-details ul {
+            margin-left: 16px;
+            margin-top: 3px;
+        }
+        
+        .experience-details li {
+            margin-bottom: 2px;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #f0fff4 0%, #e8f5e9 100%);
+            border-left: 3px solid #1DB954;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .highlight-box .title {
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 10pt;
+            margin-bottom: 4px;
+        }
+        
+        .highlight-box .description {
+            font-size: 9pt;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .skill-category {
+            margin-bottom: 6px;
+        }
+        
+        .skill-category-title {
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 3px;
+        }
+        
+        .skill-list {
+            font-size: 9pt;
+            color: #444;
+            line-height: 1.5;
+        }
+        
+        /* Education */
+        .education-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        
+        .education-left .degree {
+            font-weight: 700;
+            font-size: 10pt;
+            color: #1a1a1a;
+        }
+        
+        .education-left .institution {
+            font-size: 9.5pt;
+            color: #444;
+        }
+        
+        .education-right {
+            font-size: 9pt;
+            color: #666;
+            text-align: right;
+        }
+        
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+        }
+        
+        /* Key Metrics */
+        .metrics-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        
+        .metric {
+            background: #f8f8f8;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 9pt;
+        }
+        
+        .metric strong {
+            color: #1DB954;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .cv-container {
+                padding: 20px 28px;
+            }
+            
+            a {
+                text-decoration: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Header -->
+         <div class="header-container">
+             <header class="header">
+                 <div class="header-left">
+                     <h1>Harsh Rathore</h1>
+                     <div class="tagline">Music Business | Artist Operations | Live Events & Digital Support</div>
+                 </div>
+                 <div class="header-right">
+                     <a href="mailto:harshrathore7514@gmail.com">
+                         <span class="icon">✉</span>harshrathore7514@gmail.com
+                     </a>
+                     <a href="tel:+919460150961">
+                         <span class="icon">📱</span>+91 94601 50961
+                     </a>
+                 </div>
+             </header>
+             <p class="summary">
+               Software developer with 2+ years of experience, currently working in music business and artist operations at Dole’s Music. Combining hands-on live event experience with a technical background.            
+            </p>
+         </div>
+
+        <!-- Highlight Box -->
+        <div class="highlight-box">
+            <div class="title">Highlight: The Halla Bol Play (RR x Amit Trivedi x Vivacity 2023)</div>
+            <div class="description">
+                Turned an artist booking into a national brand moment. Pitched and executed the LIVE reveal of Rajasthan Royals' official anthem at Vivacity with 6000+ fans. Coordinated between RR marketing, Amit Trivedi's management, and production teams. Executed on ground and digital fan engagement content that increased visibility for Vivacity across artist and festival channels. <a href="https://www.youtube.com/watch?v=clIYzqDDyY4" target="_blank" style="color: #1DB954;">Watch the Halla Bol Anthem</a>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="main-column">
+                <!-- Experience Section -->
+                <section class="section">
+                    <h2 class="section-title">Professional Experience</h2>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="experience-title">Music Business Lead</span>
+                            <span class="experience-duration">Feb 2025 to Present</span>
+                        </div>
+                        <div class="experience-subtitle">Dole's Music | ₹22L+ Revenue Generated</div>
+                        <div class="experience-details">
+                            <ul>
+                                <li><strong>B2C Music Production:</strong> Managed end-to-end music projects including lyrics, composition, background scores, and final delivery, with an average project value of ₹40K</li>
+                                <li><strong>B2B Sync & Production:</strong> Reached out to ad agencies and production houses for background score opportunities and assisted in pitching co-production ideas to music labels</li>
+                                <li><strong>Custom Songs Vertical:</strong> Helped launch a new vertical focused on wedding songs, anniversary gifts, and brand anthems, contributing to early partnerships and pipeline development</li>
+                                <li>Supported in making Meta ads campaigns targeting indie artists and aspiring musicians</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="experience-title">Artist Relations & Live Production Lead</span>
+                            <span class="experience-duration">2021 to 2023</span>
+                        </div>
+                        <div class="experience-subtitle">Vivacity Festival, LNMIIT | ₹30L+ Sponsorships Secured</div>
+                        <div class="experience-details">
+                            <ul>
+                                <li>Booked <strong>10+ artists</strong> across hip-hop, indie, EDM, and Bollywood with fee negotiations ranging from Rs 5L to Rs 25L</li>
+                                <li>Secured <strong>₹30L+ in sponsorships</strong> (Rajasthan Royals, Okinawa, Linc, and more)</li>
+                                <li>Managed <strong>6000+ capacity</strong> multi-day festival including sound, lighting, and stage production</li>
+                                <li>Managed artist contracts, technical riders, green room operations, and handled live-event crisis situations in real time</li>
+                                <li>Built lasting relationships with booking agents</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="experience-title">Software Developer</span>
+                            <span class="experience-duration">2+ Years Experience</span>
+                        </div>
+                        <div class="experience-subtitle">Tech & Digital Skills (Support & Capability)</div>
+                        <div class="experience-details">
+                            <ul>
+                                <li>Comfortable working with Spotify for Artists and streaming dashboards to understand audience geography, playlist placement, and release trends</li>
+                                <li>Can build basic artist websites, EPKs, and landing pages independently using web tools</li>
+                                <li>Support digital campaign planning by tracking ad performance, learning analytics basics, and assisting with reporting</li>
+                                <li>Act as a coordination bridge between artists, designers, and marketing teams during digital executions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="side-column">
+                <!-- Education Section -->
+                <section class="section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="education-item">
+                        <div class="education-left">
+                            <div class="degree">B.Tech, Computer Science Engineering</div>
+                            <div class="institution">LNM Institute of Information Technology, Jaipur</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills Section -->
+                <section class="section">
+                    <h2 class="section-title">Core Competencies</h2>
+                    
+                    <div class="skill-category">
+                        <div class="skill-category-title">Artist Operations</div>
+                        <div class="skill-list">Artist Booking & Negotiations, Contract Management, Technical Riders, Green Room Operations, Live Event Production</div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <div class="skill-category-title">Music Business</div>
+                        <div class="skill-list">Label Relations, Sponsorship Acquisition, Brand Partnerships, B2B & B2C Strategy, Sync Licensing</div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <div class="skill-category-title">Digital & Tech</div>
+                        <div class="skill-list">Spotify for Artists (basic analytics), Meta ads (campaign setup & monitoring), Artist websites & EPKs, Basic reporting & digital coordination</div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <div class="skill-category-title">Production</div>
+                        <div class="skill-list">Sound & Lighting Coordination, Stage Management, Festival Operations, Crisis Management</div>
+                    </div>
+                </section>
+
+                <!-- What I'm Looking For -->
+                <section class="section">
+                    <h2 class="section-title">Seeking Opportunities In</h2>
+                    <div class="skill-list" style="font-size: 9pt; color: #444; line-height: 1.6;">
+                        • Artist Marketing & Management<br>
+                        • Label Digital Strategy<br>
+                        • Music Tech Startups<br>
+                        • A&R support and data-informed artist evaluation<br>
+                        • Live Events & Festival Operations
+                    </div>
+                </section>
+
+                <!-- Key Metrics -->
+                <section class="section">
+                    <h2 class="section-title">Key Metrics</h2>
+                    <div class="metrics-row" style="flex-direction: column; gap: 6px;">
+                        <div class="metric"><strong>₹22L+</strong> Revenue at Dole's Music</div>
+                        <div class="metric"><strong>₹30L+</strong> Sponsorships Secured</div>
+                        <div class="metric"><strong>10+</strong> Artists Booked</div>
+                        <div class="metric"><strong>6000+</strong> Festival Capacity</div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
