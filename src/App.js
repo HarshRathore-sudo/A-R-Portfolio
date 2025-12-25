@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { FaSpotify, FaEnvelope, FaLinkedin, FaCheckCircle, FaRandom, FaStepBackward, FaStepForward, FaPause, FaListUl, FaMobileAlt, FaExpand, FaSearch, FaWhatsapp, FaTimes, FaPlay, FaChevronDown } from 'react-icons/fa';
+import { FaSpotify, FaEnvelope, FaLinkedin, FaCheckCircle, FaRandom, FaStepBackward, FaStepForward, FaPause, FaListUl, FaMobileAlt, FaExpand, FaSearch, FaWhatsapp, FaTimes, FaPlay, FaChevronDown, FaDownload } from 'react-icons/fa';
 
 // Reference map for different versions
 const refMap = {
@@ -145,7 +145,7 @@ const StickySpotifyBtn = styled.a`
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  margin-left: 12px;
+  // margin-left: 12px;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   box-shadow: 0 2px 8px rgba(30,185,84,0.13);
   &:hover { background: #fff; color: #1db954; box-shadow: 0 4px 16px #1db95433; }
@@ -153,7 +153,7 @@ const StickySpotifyBtn = styled.a`
     width: 32px;
     height: 32px;
     font-size: 1.1rem;
-    margin-left: 8px;
+    // margin-left: 8px;
   }
 `;
 const StickyFollowBtn = styled.button`
@@ -164,14 +164,40 @@ const StickyFollowBtn = styled.button`
   padding: 8px 22px;
   font-size: 1rem;
   font-weight: 700;
-  margin-left: 12px;
+  // margin-left: 12px;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
   &:hover { background: #1db954; color: #fff; }
   @media (max-width: 768px) {
     padding: 6px 16px;
     font-size: 0.9rem;
-    margin-left: 8px;
+    // margin-left: 8px;
+  }
+`;
+
+const StickyDownloadBtn = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 8px 22px;
+  font-size: 1rem;
+  font-weight: 700;
+  // margin-left: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #1db954;
+    color: #1db954;
+  }
+  @media (max-width: 768px) {
+    padding: 6px 16px;
+    font-size: 0.9rem;
+    gap: 6px;
   }
 `;
 
@@ -298,6 +324,33 @@ const BigFollowBtn = styled.button`
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
   &:hover { background: #1db954; color: #fff; }
+`;
+
+const DownloadCVBtn = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 12px;
+  margin-top: 18px;
+  transition: all 0.2s ease;
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #1db954;
+    color: #1db954;
+  }
+  @media (max-width: 768px) {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    margin-left: 8px;
+  }
 `;
 
 const MainSection = styled.div`
@@ -819,6 +872,7 @@ const VibeDesc = styled.div`
 `;
 const VibeContactLinks = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 28px;
   @media (max-width: 800px) {
@@ -1368,6 +1422,17 @@ function App() {
     setShowModal(false);
   };
 
+  // Handle CV download
+  const handleDownloadCV = (e) => {
+    if (e) e.preventDefault();
+    const link = document.createElement("a");
+    link.href = "/assets/Harsh_Rathore_CV.pdf";
+    link.setAttribute("download", "Harsh_Rathore_CV.pdf");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   // Close modal on escape key
   useEffect(() => {
     const handleEscape = (e) => {
@@ -1390,6 +1455,9 @@ function App() {
         <StickySpotifyBtn href={spotifyProfile} target="_blank" rel="noopener noreferrer" title="Open on Spotify">
           <FaSpotify size={20} />
         </StickySpotifyBtn>
+        <StickyDownloadBtn onClick={handleDownloadCV} title="Download CV" style={{ cursor: 'pointer' }}>
+          <FaDownload size={14} /> CV
+        </StickyDownloadBtn>
         <StickyFollowBtn onClick={handleFollowClick}>Connect</StickyFollowBtn>
       </StickyHeader>
       <HeaderGradient>
@@ -1404,6 +1472,9 @@ function App() {
               <SpotifyBtn href={spotifyProfile} target="_blank" rel="noopener noreferrer">
                 <FaSpotify size={22} /> Open on Spotify
               </SpotifyBtn>
+              <DownloadCVBtn onClick={handleDownloadCV} style={{ cursor: 'pointer' }}>
+                <FaDownload size={16} /> Download CV
+              </DownloadCVBtn>
               <BigFollowBtn onClick={handleFollowClick}>Connect</BigFollowBtn>
             </div>
           </NameBlock>
@@ -1574,6 +1645,9 @@ function App() {
             </VibeContactBtn>
             <VibeContactBtn style={{ padding: '10px 15px' }} href="https://wa.me/919460150961?text=Hi%20Harsh%2C%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect!" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp size={20} /> WhatsApp
+            </VibeContactBtn>
+            <VibeContactBtn onClick={handleDownloadCV} style={{ cursor: 'pointer' }}>
+              <FaDownload size={18} /> CV
             </VibeContactBtn>
             <VibeContactSpotifyBtn href={spotifyProfile} target="_blank" rel="noopener noreferrer">
               <FaSpotify size={22} color="#fff" style={{ flexShrink: 0 }} />
