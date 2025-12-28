@@ -43,15 +43,6 @@ const defaultPopular = [
     details: `<strong>How I Turned a Booking Into a Brand Moment</strong><br><br>While negotiating Amit Trivedi's performance for Vivacity 2023, I found out he was creating the official Rajasthan Royals anthem called Halla Bol.<br><br><strong>The Pitch:</strong> I went to RR's team with an idea - why not reveal the anthem LIVE at our festival? Film the official music video during the performance with 6000+ fans as the backdrop.<br><br><strong>The Execution:</strong><br>- Coordinated between RR marketing, Amit Trivedi's management, and our production team<br>- Built a branded experience zone for RR at the venue<br>- Managed the live shoot logistics alongside the concert production<br>- Created a moment that gave RR authentic fan content, and gave our festival national visibility<br><br><em>This is what I do - spot opportunities others miss and execute them on the ground.</em>`
   },
   {
-    id: 'festivalCommand',
-    cover: '/assets/default/2.png',
-    title: 'Festival Command',
-    stat: '10+ Artists | Rs 30L+ Sponsorships',
-    duration: 'Vivacity 2021-2023',
-    section: 'festival-section',
-    details: `<strong>Artist Relations and Live Production Lead</strong><br><br><strong>The Numbers:</strong><br>- 10+ artists booked across hip-hop, indie, EDM, and Bollywood<br>- Rs 5L to Rs 25L artist fee negotiations<br>- Rs 30L+ in sponsorships secured (Rajasthan Royals, Okinawa, Linc and more)<br>- 6000+ capacity multi-day festival<br><br><strong>What I Actually Did:</strong><br>- Negotiated contracts, technical riders, hospitality requirements<br>- Built relationships with booking agents and artist managers<br>- Coordinated sound, lighting, stage production teams<br>- Managed green room operations and artist experience<br>- Handled crisis management in real-time (power cuts, delayed flights, last-minute rider changes)<br><br><strong>Key Learning:</strong> Artists remember how you treat them, not just what you paid them. The green room experience, the attention to their rider, the respect for their time - that is what gets you callbacks.`
-  },
-  {
     id: 'dolesMusic',
     cover: '/assets/default/4.png',
     title: 'Building at Doles Music',
@@ -59,6 +50,15 @@ const defaultPopular = [
     duration: 'Feb 2025-Present',
     section: 'doles-section',
     details: `<strong>Music Business from the Inside</strong><br><br>Currently building the music business at Doles Music across three verticals:<br><br><strong>B2C Music Production (Rs 22L+ this year):</strong><br>- End-to-end music creation: lyrics, composition, BGM, mixing, mastering<br>- Meta ads targeting indie artists and aspiring musicians<br>- Average project value: Rs 40K<br><br><strong>B2B Sync and Production:</strong><br>- Approaching ad agencies and production houses for background scores<br>- Pitching to labels for co-production opportunities<br>- Building relationships in the advertising music space<br><br><strong>Custom Songs Vertical (New Launch):</strong><br>- Wedding songs, anniversary gifts, brand anthems<br>- Partnership pipeline with wedding planners and photographers<br>- Deals in progress<br><br><em>I am not just doing marketing - I am helping build a music business from scratch.</em>`
+  },
+  {
+    id: 'festivalCommand',
+    cover: '/assets/default/2.png',
+    title: 'Festival Command',
+    stat: '10+ Artists | Rs 30L+ Sponsorships',
+    duration: 'Vivacity 2021-2023',
+    section: 'festival-section',
+    details: `<strong>Artist Relations and Live Production Lead</strong><br><br><strong>The Numbers:</strong><br>- 10+ artists booked across hip-hop, indie, EDM, and Bollywood<br>- Rs 5L to Rs 25L artist fee negotiations<br>- Rs 30L+ in sponsorships secured (Rajasthan Royals, Okinawa, Linc and more)<br>- 6000+ capacity multi-day festival<br><br><strong>What I Actually Did:</strong><br>- Negotiated contracts, technical riders, hospitality requirements<br>- Built relationships with booking agents and artist managers<br>- Coordinated sound, lighting, stage production teams<br>- Managed green room operations and artist experience<br>- Handled crisis management in real-time (power cuts, delayed flights, last-minute rider changes)<br><br><strong>Key Learning:</strong> Artists remember how you treat them, not just what you paid them. The green room experience, the attention to their rider, the respect for their time - that is what gets you callbacks.`
   },
   {
     id: 'developerEdge',
