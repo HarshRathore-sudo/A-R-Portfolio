@@ -558,7 +558,7 @@ const ResumeSections = styled.div`
 `;
 
 const ResumeSection = styled.section`
-  padding: 72px 0 56px 0;
+  padding: 72px 0 0 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   scroll-margin-top: 100px;
   @media (max-width: 600px) {
