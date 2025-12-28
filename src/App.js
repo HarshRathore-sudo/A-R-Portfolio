@@ -52,6 +52,15 @@ const defaultPopular = [
     details: `<strong>Artist Relations and Live Production Lead</strong><br><br><strong>The Numbers:</strong><br>- 10+ artists booked across hip-hop, indie, EDM, and Bollywood<br>- Rs 5L to Rs 25L artist fee negotiations<br>- Rs 30L+ in sponsorships secured (Rajasthan Royals, Okinawa, Linc and more)<br>- 6000+ capacity multi-day festival<br><br><strong>What I Actually Did:</strong><br>- Negotiated contracts, technical riders, hospitality requirements<br>- Built relationships with booking agents and artist managers<br>- Coordinated sound, lighting, stage production teams<br>- Managed green room operations and artist experience<br>- Handled crisis management in real-time (power cuts, delayed flights, last-minute rider changes)<br><br><strong>Key Learning:</strong> Artists remember how you treat them, not just what you paid them. The green room experience, the attention to their rider, the respect for their time - that is what gets you callbacks.`
   },
   {
+    id: 'dolesMusic',
+    cover: '/assets/default/4.png',
+    title: 'Building at Doles Music',
+    stat: 'Rs 22L+ Revenue | 3 Verticals',
+    duration: 'Feb 2025-Present',
+    section: 'doles-section',
+    details: `<strong>Music Business from the Inside</strong><br><br>Currently building the music business at Doles Music across three verticals:<br><br><strong>B2C Music Production (Rs 22L+ this year):</strong><br>- End-to-end music creation: lyrics, composition, BGM, mixing, mastering<br>- Meta ads targeting indie artists and aspiring musicians<br>- Average project value: Rs 40K<br><br><strong>B2B Sync and Production:</strong><br>- Approaching ad agencies and production houses for background scores<br>- Pitching to labels for co-production opportunities<br>- Building relationships in the advertising music space<br><br><strong>Custom Songs Vertical (New Launch):</strong><br>- Wedding songs, anniversary gifts, brand anthems<br>- Partnership pipeline with wedding planners and photographers<br>- Deals in progress<br><br><em>I am not just doing marketing - I am helping build a music business from scratch.</em>`
+  },
+  {
     id: 'developerEdge',
     cover: '/assets/default/3.png',
     title: 'The Developer Edge',
@@ -60,15 +69,6 @@ const defaultPopular = [
     section: 'developer-section',
     details: `<strong>Why a Software Developer in Music?</strong><br><br>Most people in music do not understand tech. Most techies do not understand music. I am the bridge.<br><br><strong>What I Bring:</strong><br>- Analyze streaming data and spot growth patterns others miss<br>- Build artist websites, EPKs, and digital experiences from scratch<br>- Understand how Spotify's algorithm actually works<br>- Automate marketing workflows that take others hours<br>- Bridge between creative teams and tech teams<br><br><strong>Perfect For:</strong> Digital-first labels, music tech startups, data-driven A&R teams, and anyone who needs someone who thinks in both code and culture.<br><br><em>In an industry going digital, being tech-native is not optional anymore.</em>`
   },
-  {
-    id: 'dolesMusic',
-    cover: '/assets/default/4.png',
-    title: 'Building at Doles Music',
-    stat: 'Rs 22L+ Revenue | 3 Verticals',
-    duration: 'Feb 2025-Present',
-    section: 'doles-section',
-    details: `<strong>Music Business from the Inside</strong><br><br>Currently building the music business at Doles Music across three verticals:<br><br><strong>B2C Music Production (Rs 22L+ this year):</strong><br>- End-to-end music creation: lyrics, composition, BGM, mixing, mastering<br>- Meta ads targeting indie artists and aspiring musicians<br>- Average project value: Rs 40K<br><br><strong>B2B Sync and Production:</strong><br>- Approaching ad agencies and production houses for background scores<br>- Pitching to labels for co-production opportunities<br>- Building relationships in the advertising music space<br><br><strong>Custom Songs Vertical (New Launch):</strong><br>- Wedding songs, anniversary gifts, brand anthems<br>- Partnership pipeline with wedding planners and photographers<br>- Deals in progress<br><br><em>I am not just doing marketing - I am helping build a music business from scratch.</em>`
-  }
 ];
 const artistPick = {
   image: '/assets/viva-logo.jpeg',
