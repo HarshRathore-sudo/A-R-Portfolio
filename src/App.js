@@ -88,7 +88,7 @@ const defaultPopular = [
     duration: "Strategy Case Study",
     section: "cultural-strategy-section",
     externalLink: "https://shillong-chamber-choir-g-wh67dtr.gamma.site/",
-    thumbnailImage: "/assets/default/scc.png",
+    thumbnailImage: "/assets/default/6.png",
     details: `<strong>Artist and Cultural Institution Strategy</strong><br><br>A full-stack strategy project for a legacy Indian vocal ensemble, covering digital performance, collaborations, live productions, and long-term IP development.<br><br><strong>What I Did:</strong><br>- Led deep research into the institution's history, legacy, cultural mission, and current positioning<br>- Analyzed digital performance across YouTube, Instagram, and Facebook<br>- Developed an original Conversion Score framework to evaluate creator partnerships based on intent, not vanity metrics<br>- Applied the framework to real creators with documented scoring and reasoning<br>- Created strategy across digital growth, collaborations, live productions, and long-term IP development<br><br><strong>Key Challenges Addressed:</strong><br>- Preserving legacy while enabling growth<br>- Avoiding growth-hacking for a cultural institution<br>- Monetization without compromising artistic integrity<br>- Post-leadership-transition sensitivity<br>- Turning data into decisions<br><br><strong>What I Built:</strong><br>- Conversion Score framework for creator evaluation<br>- Collaboration and IP roadmap<br>- Pilot-first execution model<br>- Multi-revenue strategy<br>- Presentation and website<br><br><strong>Skills Demonstrated:</strong><br>Artist management thinking, strategic planning, data analysis, cultural sensitivity, stakeholder-oriented communication, execution-focused strategy<br><br><em>A complete strategic blueprint and reusable framework for similar artists or institutions.</em>`,
   },
   {
@@ -1754,7 +1754,7 @@ function App() {
               rel="noopener noreferrer"
             >
               <FeaturedProjectImageBg
-                src="/assets/default/scc.png"
+                src="/assets/default/6.png"
                 alt="Cultural Institution Strategy"
               />
               <FeaturedProjectOverlay />
