@@ -1,81 +1,111 @@
-import React, { useRef, useState, useEffect } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import { FaSpotify, FaEnvelope, FaLinkedin, FaCheckCircle, FaRandom, FaStepBackward, FaStepForward, FaPause, FaListUl, FaMobileAlt, FaExpand, FaSearch, FaWhatsapp, FaTimes, FaPlay, FaChevronDown, FaDownload } from 'react-icons/fa';
+import React, { useRef, useState, useEffect } from "react";
+import styled, { createGlobalStyle } from "styled-components";
+import {
+  FaSpotify,
+  FaEnvelope,
+  FaLinkedin,
+  FaCheckCircle,
+  FaRandom,
+  FaStepBackward,
+  FaStepForward,
+  FaPause,
+  FaListUl,
+  FaMobileAlt,
+  FaExpand,
+  FaSearch,
+  FaWhatsapp,
+  FaTimes,
+  FaPlay,
+  FaChevronDown,
+  FaDownload,
+  FaLink
+} from "react-icons/fa";
 
 // Reference map for different versions
 const refMap = {
-  "representMgmt": [
+  representMgmt: [
     {
-      id: 'micCheck',
-      cover: '/assets/represent-mgmt/1.png'
+      id: "micCheck",
+      cover: "/assets/represent-mgmt/1.png",
     },
     {
-      id: 'roots',
-      cover: '/assets/represent-mgmt/3.png'
+      id: "roots",
+      cover: "/assets/represent-mgmt/3.png",
     },
     {
-      id: 'hustleTape',
-      cover: '/assets/represent-mgmt/4.png'
+      id: "hustleTape",
+      cover: "/assets/represent-mgmt/4.png",
     },
     {
-      id: 'finalVerse',
-      cover: '/assets/represent-mgmt/2.png'
+      id: "finalVerse",
+      cover: "/assets/represent-mgmt/2.png",
     },
-  ]
+  ],
 };
 // Real Spotify verified badge SVG
 
-const profileImage = '/assets/profile.jpeg';
-const spotifyProfile = 'https://open.spotify.com/user/31ajgbpqwxp4t5kvc33cly6ylqoe?si=54c518a8437c4dc2';
+const profileImage = "/assets/profile.jpeg";
+const spotifyProfile =
+  "https://open.spotify.com/user/31ajgbpqwxp4t5kvc33cly6ylqoe?si=54c518a8437c4dc2";
 
 // Default values for popular items
 const defaultPopular = [
   {
-    id: 'hallaBol',
-    cover: '/assets/default/1.png',
-    title: 'The Halla Bol Play',
-    stat: 'RR x Amit Trivedi x Vivacity',
-    duration: 'Brand Activation',
-    section: 'halla-bol-section',
-    videoId: 'clIYzqDDyY4',
-    tweetImage: '/assets/amit-trivedi-tweet.jpg',
-    hookLine: 'Turned a booking into a brand moment for Rajasthan Royals',
-    details: `<strong>How I Turned a Booking Into a Brand Moment</strong><br><br>While negotiating Amit Trivedi's performance for Vivacity 2023, I found out he was creating the official Rajasthan Royals anthem called Halla Bol.<br><br><strong>The Pitch:</strong> I went to RR's team with an idea - why not reveal the anthem LIVE at our festival? Film the official music video during the performance with 6000+ fans as the backdrop.<br><br><strong>The Execution:</strong><br>- Coordinated between RR marketing, Amit Trivedi's management, and our production team<br>- Built a branded experience zone for RR at the venue<br>- Managed the live shoot logistics alongside the concert production<br>- Created a moment that gave RR authentic fan content, and gave our festival national visibility<br><br><em>This is what I do - spot opportunities others miss and execute them on the ground.</em>`
+    id: "hallaBol",
+    cover: "/assets/default/1.png",
+    title: "The Halla Bol Play",
+    stat: "RR x Amit Trivedi x Vivacity",
+    duration: "Brand Activation",
+    section: "halla-bol-section",
+    videoId: "clIYzqDDyY4",
+    tweetImage: "/assets/amit-trivedi-tweet.jpg",
+    hookLine: "Turned a booking into a brand moment for Rajasthan Royals",
+    details: `<strong>How I Turned a Booking Into a Brand Moment</strong><br><br>While negotiating Amit Trivedi's performance for Vivacity 2023, I found out he was creating the official Rajasthan Royals anthem called Halla Bol.<br><br><strong>The Pitch:</strong> I went to RR's team with an idea - why not reveal the anthem LIVE at our festival? Film the official music video during the performance with 6000+ fans as the backdrop.<br><br><strong>The Execution:</strong><br>- Coordinated between RR marketing, Amit Trivedi's management, and our production team<br>- Built a branded experience zone for RR at the venue<br>- Managed the live shoot logistics alongside the concert production<br>- Created a moment that gave RR authentic fan content, and gave our festival national visibility<br><br><em>This is what I do - spot opportunities others miss and execute them on the ground.</em>`,
   },
   {
-    id: 'dolesMusic',
-    cover: '/assets/default/4.png',
-    title: 'Building at Doles Music',
-    stat: 'Rs 22L+ Revenue | 3 Verticals',
-    duration: 'Feb 2025-Present',
-    section: 'doles-section',
-    details: `<strong>Music Business from the Inside</strong><br><br>Currently building the music business at Doles Music across three verticals:<br><br><strong>B2C Music Production (Rs 22L+ this year):</strong><br>- End-to-end music creation: lyrics, composition, BGM, mixing, mastering<br>- Meta ads targeting indie artists and aspiring musicians<br>- Average project value: Rs 40K<br><br><strong>B2B Sync and Production:</strong><br>- Approaching ad agencies and production houses for background scores<br>- Pitching to labels for co-production opportunities<br>- Building relationships in the advertising music space<br><br><strong>Custom Songs Vertical (New Launch):</strong><br>- Wedding songs, anniversary gifts, brand anthems<br>- Partnership pipeline with wedding planners and photographers<br>- Deals in progress<br><br><em>I am not just doing marketing - I am helping build a music business from scratch.</em>`
+    id: "dolesMusic",
+    cover: "/assets/default/4.png",
+    title: "Building at Doles Music",
+    stat: "Rs 22L+ Revenue | 3 Verticals",
+    duration: "Feb 2025-Present",
+    section: "doles-section",
+    details: `<strong>Music Business from the Inside</strong><br><br>Currently building the music business at Doles Music across three verticals:<br><br><strong>B2C Music Production (Rs 22L+ this year):</strong><br>- End-to-end music creation: lyrics, composition, BGM, mixing, mastering<br>- Meta ads targeting indie artists and aspiring musicians<br>- Average project value: Rs 40K<br><br><strong>B2B Sync and Production:</strong><br>- Approaching ad agencies and production houses for background scores<br>- Pitching to labels for co-production opportunities<br>- Building relationships in the advertising music space<br><br><strong>Custom Songs Vertical (New Launch):</strong><br>- Wedding songs, anniversary gifts, brand anthems<br>- Partnership pipeline with wedding planners and photographers<br>- Deals in progress<br><br><em>I am not just doing marketing - I am helping build a music business from scratch.</em>`,
   },
   {
-    id: 'festivalCommand',
-    cover: '/assets/default/2.png',
-    title: 'Festival Command',
-    stat: '10+ Artists | Rs 30L+ Sponsorships',
-    duration: 'Vivacity 2021-2023',
-    section: 'festival-section',
-    details: `<strong>Artist Relations and Live Production Lead</strong><br><br><strong>The Numbers:</strong><br>- 10+ artists booked across hip-hop, indie, EDM, and Bollywood<br>- Rs 5L to Rs 25L artist fee negotiations<br>- Rs 30L+ in sponsorships secured (Rajasthan Royals, Okinawa, Linc and more)<br>- 6000+ capacity multi-day festival<br><br><strong>What I Actually Did:</strong><br>- Negotiated contracts, technical riders, hospitality requirements<br>- Built relationships with booking agents and artist managers<br>- Coordinated sound, lighting, stage production teams<br>- Managed green room operations and artist experience<br>- Handled crisis management in real-time (power cuts, delayed flights, last-minute rider changes)<br><br><strong>Key Learning:</strong> Artists remember how you treat them, not just what you paid them. The green room experience, the attention to their rider, the respect for their time - that is what gets you callbacks.`
+    id: "festivalCommand",
+    cover: "/assets/default/2.png",
+    title: "Festival Command",
+    stat: "10+ Artists | Rs 30L+ Sponsorships",
+    duration: "Vivacity 2021-2023",
+    section: "festival-section",
+    details: `<strong>Artist Relations and Live Production Lead</strong><br><br><strong>The Numbers:</strong><br>- 10+ artists booked across hip-hop, indie, EDM, and Bollywood<br>- Rs 5L to Rs 25L artist fee negotiations<br>- Rs 30L+ in sponsorships secured (Rajasthan Royals, Okinawa, Linc and more)<br>- 6000+ capacity multi-day festival<br><br><strong>What I Actually Did:</strong><br>- Negotiated contracts, technical riders, hospitality requirements<br>- Built relationships with booking agents and artist managers<br>- Coordinated sound, lighting, stage production teams<br>- Managed green room operations and artist experience<br>- Handled crisis management in real-time (power cuts, delayed flights, last-minute rider changes)<br><br><strong>Key Learning:</strong> Artists remember how you treat them, not just what you paid them. The green room experience, the attention to their rider, the respect for their time - that is what gets you callbacks.`,
   },
   {
-    id: 'developerEdge',
-    cover: '/assets/default/3.png',
-    title: 'The Developer Edge',
-    stat: 'Tech x Music',
-    duration: 'Competitive Advantage',
-    section: 'developer-section',
-    details: `<strong>Why a Software Developer in Music?</strong><br><br>Most people in music do not understand tech. Most techies do not understand music. I am the bridge.<br><br><strong>What I Bring:</strong><br>- Analyze streaming data and spot growth patterns others miss<br>- Build artist websites, EPKs, and digital experiences from scratch<br>- Understand how Spotify's algorithm actually works<br>- Automate marketing workflows that take others hours<br>- Bridge between creative teams and tech teams<br><br><strong>Perfect For:</strong> Digital-first labels, music tech startups, data-driven A&R teams, and anyone who needs someone who thinks in both code and culture.<br><br><em>In an industry going digital, being tech-native is not optional anymore.</em>`
+    id: "culturalStrategy",
+    cover: "/assets/default/6.png",
+    title: "Cultural Institution Strategy",
+    stat: "Artist Strategy | Digital + Live Ecosystem",
+    duration: "Strategy Case Study",
+    section: "cultural-strategy-section",
+    externalLink: "https://shillong-chamber-choir-g-wh67dtr.gamma.site/",
+    thumbnailImage: "/assets/default/scc.png",
+    details: `<strong>Artist and Cultural Institution Strategy</strong><br><br>A full-stack strategy project for a legacy Indian vocal ensemble, covering digital performance, collaborations, live productions, and long-term IP development.<br><br><strong>What I Did:</strong><br>- Led deep research into the institution's history, legacy, cultural mission, and current positioning<br>- Analyzed digital performance across YouTube, Instagram, and Facebook<br>- Developed an original Conversion Score framework to evaluate creator partnerships based on intent, not vanity metrics<br>- Applied the framework to real creators with documented scoring and reasoning<br>- Created strategy across digital growth, collaborations, live productions, and long-term IP development<br><br><strong>Key Challenges Addressed:</strong><br>- Preserving legacy while enabling growth<br>- Avoiding growth-hacking for a cultural institution<br>- Monetization without compromising artistic integrity<br>- Post-leadership-transition sensitivity<br>- Turning data into decisions<br><br><strong>What I Built:</strong><br>- Conversion Score framework for creator evaluation<br>- Collaboration and IP roadmap<br>- Pilot-first execution model<br>- Multi-revenue strategy<br>- Presentation and website<br><br><strong>Skills Demonstrated:</strong><br>Artist management thinking, strategic planning, data analysis, cultural sensitivity, stakeholder-oriented communication, execution-focused strategy<br><br><em>A complete strategic blueprint and reusable framework for similar artists or institutions.</em>`,
+  },
+  {
+    id: "developerEdge",
+    cover: "/assets/default/3.png",
+    title: "The Developer Edge",
+    stat: "Tech x Music",
+    duration: "Competitive Advantage",
+    section: "developer-section",
+    details: `<strong>Why a Software Developer in Music?</strong><br><br>Most people in music do not understand tech. Most techies do not understand music. I am the bridge.<br><br><strong>What I Bring:</strong><br>- Analyze streaming data and spot growth patterns others miss<br>- Build artist websites, EPKs, and digital experiences from scratch<br>- Understand how Spotify's algorithm actually works<br>- Automate marketing workflows that take others hours<br>- Bridge between creative teams and tech teams<br><br><strong>Perfect For:</strong> Digital-first labels, music tech startups, data-driven A&R teams, and anyone who needs someone who thinks in both code and culture.<br><br><em>In an industry going digital, being tech-native is not optional anymore.</em>`,
   },
 ];
 const artistPick = {
-  image: '/assets/viva-logo.jpeg',
-  desc: 'Halla Bol - RR x Amit Trivedi',
-  meta: 'The brand moment I created at Vivacity'
+  image: "/assets/viva-logo.jpeg",
+  desc: "Halla Bol - RR x Amit Trivedi",
+  meta: "The brand moment I created at Vivacity",
 };
-
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -88,11 +118,13 @@ const GlobalStyle = createGlobalStyle`
 
 const StickyHeader = styled.div`
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   background: rgba(78, 44, 44, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
   z-index: 200;
   display: flex;
   align-items: center;
@@ -101,7 +133,7 @@ const StickyHeader = styled.div`
   height: 60px;
   transition: all 0.3s ease;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transform: translateY(${props => props.$show ? '0' : '-100%'});
+  transform: translateY(${(props) => (props.$show ? "0" : "-100%")});
   @media (max-width: 768px) {
     padding: 6px 16px;
     gap: 12px;
@@ -146,9 +178,16 @@ const StickySpotifyBtn = styled.a`
   justify-content: center;
   font-size: 1.3rem;
   // margin-left: 12px;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(30,185,84,0.13);
-  &:hover { background: #fff; color: #1db954; box-shadow: 0 4px 16px #1db95433; }
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(30, 185, 84, 0.13);
+  &:hover {
+    background: #fff;
+    color: #1db954;
+    box-shadow: 0 4px 16px #1db95433;
+  }
   @media (max-width: 768px) {
     width: 32px;
     height: 32px;
@@ -166,8 +205,13 @@ const StickyFollowBtn = styled.button`
   font-weight: 700;
   // margin-left: 12px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  &:hover { background: #1db954; color: #fff; }
+  transition:
+    background 0.2s,
+    color 0.2s;
+  &:hover {
+    background: #1db954;
+    color: #fff;
+  }
   @media (max-width: 768px) {
     padding: 6px 16px;
     font-size: 0.9rem;
@@ -234,7 +278,7 @@ const ProfileImage = styled.img`
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   border: 6px solid #181818;
   background: #232323;
   cursor: pointer;
@@ -302,9 +346,11 @@ const SpotifyBtn = styled.a`
   padding: 12px 28px;
   font-size: 1rem;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(30,185,84,0.13);
+  box-shadow: 0 2px 8px rgba(30, 185, 84, 0.13);
   margin-top: 18px;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
   &:hover {
     background: #fff;
     color: #1db954;
@@ -322,8 +368,13 @@ const BigFollowBtn = styled.button`
   margin-left: 18px;
   margin-top: 18px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  &:hover { background: #1db954; color: #fff; }
+  transition:
+    background 0.2s,
+    color 0.2s;
+  &:hover {
+    background: #1db954;
+    color: #fff;
+  }
 `;
 
 const DownloadCVBtn = styled.a`
@@ -394,7 +445,7 @@ const PopularRow = styled.div`
   border-radius: 8px;
   transition: background 0.2s;
   cursor: pointer;
-  background: ${({ $active }) => $active ? '#232323' : 'transparent'};
+  background: ${({ $active }) => ($active ? "#232323" : "transparent")};
   &:hover {
     background: #232323;
   }
@@ -445,12 +496,14 @@ const PopTitle = styled.div`
 `;
 
 const ArtistPickSection = styled.div`
-  flex: 1;
+  flex: 1.5;
+  min-width: 350px;
   margin-left: 32px;
   @media (max-width: 900px) {
     margin-left: 0;
     margin-top: 32px;
     width: 100%;
+    min-width: unset;
   }
 `;
 
@@ -473,7 +526,7 @@ const PickSpeechBubble = styled.div`
   padding: 4px 14px 4px 4px;
   font-size: 1rem;
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 2;
 `;
 const PickProfileImg = styled.img`
@@ -483,34 +536,43 @@ const PickProfileImg = styled.img`
   object-fit: cover;
   margin-right: 8px;
   border: 2px solid #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 `;
 const PickImageOverlay = styled.div`
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.65) 100%);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.45) 60%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
   z-index: 1;
 `;
 
 const ArtistPickCard = styled.div`
   background: #232323;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   position: relative;
-  ${'' /* width: 100%; */}
+  ${"" /* width: 100%; */}
   min-height: 220px;
   width: 100%;
   overflow: hidden;
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.24);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
   }
   @media (max-width: 768px) {
     height: 240px;
@@ -522,7 +584,10 @@ const ArtistPickCard = styled.div`
 
 const PickImageBg = styled.img`
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -549,6 +614,104 @@ const PickMeta = styled.div`
   color: #b3b3b3;
   font-size: 1rem;
   margin-top: 4px;
+`;
+
+// Featured Project Card - for Cultural Institution Strategy
+const FeaturedProjectSection = styled.div`
+  flex: 1;
+  margin-left: 0;
+  margin-top: 24px;
+  @media (max-width: 900px) {
+    margin-top: 24px;
+    width: 100%;
+  }
+`;
+
+const FeaturedProjectTitle = styled.div`
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+`;
+
+const FeaturedProjectCard = styled.a`
+  background: #232323;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  position: relative;
+  min-height: 220px;
+  width: 100%;
+  overflow: hidden;
+  text-decoration: none;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
+  }
+  @media (max-width: 768px) {
+    height: 240px;
+  }
+  @media (max-width: 480px) {
+    height: 200px;
+  }
+`;
+
+const FeaturedProjectImageBg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+`;
+
+const FeaturedProjectOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.45) 60%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  z-index: 1;
+`;
+
+const FeaturedProjectContent = styled.div`
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 8px;
+`;
+
+const FeaturedProjectName = styled.div`
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 800;
+`;
+
+const FeaturedProjectMeta = styled.div`
+  color: #b3b3b3;
+  font-size: 1rem;
 `;
 
 const ResumeSections = styled.div`
@@ -770,7 +933,8 @@ const ScrollDot = styled.div`
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: ${props => props.$active ? '#1db954' : 'rgba(255,255,255,0.2)'};
+  background: ${(props) =>
+    props.$active ? "#1db954" : "rgba(255,255,255,0.2)"};
   transition: background 0.2s ease;
 `;
 
@@ -807,25 +971,31 @@ const ExpandButton = styled.button`
 
 // Expandable content container
 const ExpandableContent = styled.div`
-  max-height: ${props => props.$expanded ? '1200px' : '0'};
+  max-height: ${(props) => (props.$expanded ? "1200px" : "0")};
   overflow: hidden;
-  opacity: ${props => props.$expanded ? 1 : 0.8};
-  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: ${(props) => (props.$expanded ? 1 : 0.8)};
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease;
 `;
-
-
 
 const VibeCard = styled.div`
   max-width: 900px;
   margin: 72px auto 110px auto;
   padding: 64px 56px 56px 56px;
-  background: linear-gradient(120deg, rgba(24,24,24,0.92) 60%, rgba(30,185,84,0.10) 100%);
+  background: linear-gradient(
+    120deg,
+    rgba(24, 24, 24, 0.92) 60%,
+    rgba(30, 185, 84, 0.1) 100%
+  );
   border-radius: 32px;
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  box-shadow: 0 8px 48px 0 rgba(30,185,84,0.18), 0 1.5px 16px 0 rgba(0,0,0,0.13);
-  border: 2.5px solid rgba(30,185,84,0.22);
+  box-shadow:
+    0 8px 48px 0 rgba(30, 185, 84, 0.18),
+    0 1.5px 16px 0 rgba(0, 0, 0, 0.13);
+  border: 2.5px solid rgba(30, 185, 84, 0.22);
   position: relative;
   overflow: hidden;
   @media (max-width: 800px) {
@@ -848,11 +1018,11 @@ const VibeLeft = styled.div`
 const VibeHeading = styled.div`
   font-size: 2rem;
   font-weight: 900;
-  color: #1DB954;
+  color: #1db954;
   margin-bottom: 0;
   text-align: left;
   letter-spacing: 0.01em;
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
 `;
 const VibeDesc = styled.div`
   color: #e0ffe0;
@@ -862,7 +1032,7 @@ const VibeDesc = styled.div`
   max-width: 600px;
   margin: 18px 0 0 0;
   opacity: 0.92;
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
   @media (max-width: 800px) {
     max-width: 100%;
@@ -886,18 +1056,22 @@ const VibeContactBtn = styled.a`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: rgba(255,255,255,0.07);
+  background: rgba(255, 255, 255, 0.07);
   color: #1db954;
   font-weight: 700;
   border-radius: 999px;
   padding: 7px 0;
   font-size: 0.93rem;
   text-decoration: none;
-  box-shadow: 0 1.5px 8px rgba(30,185,84,0.08);
-  border: 1.5px solid rgba(80,255,180,0.10);
+  box-shadow: 0 1.5px 8px rgba(30, 185, 84, 0.08);
+  border: 1.5px solid rgba(80, 255, 180, 0.1);
   min-width: 100px;
   flex: 1;
-  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+  transition:
+    background 0.18s,
+    color 0.18s,
+    box-shadow 0.18s,
+    transform 0.18s;
   &:hover {
     background: #1db954;
     color: #fff;
@@ -968,7 +1142,7 @@ const InspiredBy = styled.div`
   font-weight: 600;
   letter-spacing: 0.02em;
   opacity: 0.85;
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
   @media (max-width: 768px) {
     font-size: 0.9rem;
   }
@@ -987,7 +1161,9 @@ const SpotifyWave = styled.div`
 
 const FooterPlayer = styled.div`
   position: fixed;
-  left: 0; right: 0; bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: #181818;
   border-top: 1px solid #232323;
   display: flex;
@@ -996,7 +1172,7 @@ const FooterPlayer = styled.div`
   padding: 12px 32px 10px 32px;
   height: 68px;
   z-index: 100;
-  box-shadow: 0 -2px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.12);
   @media (max-width: 768px) {
     padding: 8px 16px;
     height: auto;
@@ -1052,7 +1228,7 @@ const PlayerTitle = styled.div`
       background: #181818;
       padding: 4px;
       border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
   }
 `;
@@ -1072,7 +1248,7 @@ const PlayerSub = styled.div`
       background: #181818;
       padding: 4px;
       border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
   }
 `;
@@ -1114,8 +1290,13 @@ const PlayerButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s, transform 0.2s;
-  &:hover { color: #1db954; transform: scale(1.15); }
+  transition:
+    color 0.2s,
+    transform 0.2s;
+  &:hover {
+    color: #1db954;
+    transform: scale(1.15);
+  }
 `;
 const PlayerPlayButton = styled(PlayerButton)`
   color: #1db954;
@@ -1164,7 +1345,9 @@ const PlayerBar = styled.div`
 `;
 const PlayerBarProgress = styled.div`
   position: absolute;
-  left: 0; top: 0; bottom: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
   background: linear-gradient(90deg, #1db954 0%, #fff 100%);
   border-radius: 3px;
   height: 100%;
@@ -1188,7 +1371,9 @@ const PlayerVolumeBar = styled.div`
 `;
 const PlayerVolumeProgress = styled.div`
   position: absolute;
-  left: 0; top: 0; bottom: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
   background: #fff;
   border-radius: 2px;
   height: 100%;
@@ -1206,16 +1391,18 @@ const ModalOverlay = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  opacity: ${props => props.$show ? 1 : 0};
-  visibility: ${props => props.$show ? 'visible' : 'hidden'};
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: ${(props) => (props.$show ? 1 : 0)};
+  visibility: ${(props) => (props.$show ? "visible" : "hidden")};
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 `;
 
 const ModalContent = styled.div`
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
-  transform: ${props => props.$show ? 'scale(1)' : 'scale(0.9)'};
+  transform: ${(props) => (props.$show ? "scale(1)" : "scale(0.9)")};
   transition: transform 0.3s ease;
 `;
 
@@ -1225,7 +1412,7 @@ const ModalImage = styled.img`
   max-width: 100%;
   max-height: 90vh;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 `;
 
 const CloseButton = styled.button`
@@ -1250,21 +1437,26 @@ const CloseButton = styled.button`
 // Floating Video Modal styles (move outside App)
 const VideoModalOverlay = styled.div`
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.85);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  opacity: ${props => props.$show ? 1 : 0};
-  visibility: ${props => props.$show ? 'visible' : 'hidden'};
-  transition: opacity 0.3s, visibility 0.3s;
+  opacity: ${(props) => (props.$show ? 1 : 0)};
+  visibility: ${(props) => (props.$show ? "visible" : "hidden")};
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
 `;
 const VideoModalContent = styled.div`
   position: relative;
   background: #181818;
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   padding: 0;
   max-width: 90vw;
   max-height: 80vh;
@@ -1290,7 +1482,6 @@ const VideoIframe = styled.iframe`
   }
 `;
 
-
 function App() {
   const [popular, setPopular] = useState(defaultPopular);
   const [sectionRefs, setSectionRefs] = useState([]);
@@ -1314,7 +1505,7 @@ function App() {
   // Handle URL parameters and update popular items
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const refParam = urlParams.get('ref');
+    const refParam = urlParams.get("ref");
 
     if (refParam && refMap[refParam]) {
       // Create a map of the reference items by their id for easy lookup
@@ -1324,13 +1515,13 @@ function App() {
       }, {});
 
       // Merge reference items with default items
-      const updatedPopular = defaultPopular.map(item => {
+      const updatedPopular = defaultPopular.map((item) => {
         // If the item exists in the reference map, merge it with the default item
         const refItem = refItemsMap[item.id];
         if (refItem) {
           return {
-            ...item,  // Keep all default properties
-            cover: refItem.cover  // Override only the cover
+            ...item, // Keep all default properties
+            cover: refItem.cover, // Override only the cover
           };
         }
         return item;
@@ -1341,7 +1532,7 @@ function App() {
   }, []);
 
   // Scroll to section on click
-  const handleRowClick = idx => {
+  const handleRowClick = (idx) => {
     if (sectionRefs[idx]?.current) {
       const element = sectionRefs[idx].current;
       const offset = 20;
@@ -1350,7 +1541,7 @@ function App() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -1358,7 +1549,7 @@ function App() {
   // Handle artist pick click
   const handleArtistPickClick = () => {
     // Find the index of the Vivacity section (hustleTape)
-    const vivacityIndex = popular.findIndex(item => item.id === 'hustleTape');
+    const vivacityIndex = popular.findIndex((item) => item.id === "hustleTape");
     if (vivacityIndex !== -1) {
       handleRowClick(vivacityIndex);
     }
@@ -1367,7 +1558,7 @@ function App() {
   // Scroll to vibe card section
   const handleFollowClick = () => {
     if (vibeCardRef.current) {
-      vibeCardRef.current.scrollIntoView({ behavior: 'smooth' });
+      vibeCardRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -1376,8 +1567,12 @@ function App() {
     const handleScroll = () => {
       if (sectionRefs.length === 0) return;
 
-      const offsets = sectionRefs.map(ref => ref.current?.getBoundingClientRect().top ?? Infinity);
-      const active = offsets.findIndex((top, idx) => top > 80 && (idx === 0 || offsets[idx - 1] <= 80));
+      const offsets = sectionRefs.map(
+        (ref) => ref.current?.getBoundingClientRect().top ?? Infinity,
+      );
+      const active = offsets.findIndex(
+        (top, idx) => top > 80 && (idx === 0 || offsets[idx - 1] <= 80),
+      );
       if (active === -1) {
         setActiveIdx(offsets.length - 1);
       } else {
@@ -1388,11 +1583,17 @@ function App() {
       const total = sectionRefs.length;
       let percent = 0;
       if (total > 1) {
-        const sectionTops = sectionRefs.map(ref => ref.current?.getBoundingClientRect().top ?? 0);
+        const sectionTops = sectionRefs.map(
+          (ref) => ref.current?.getBoundingClientRect().top ?? 0,
+        );
         const scrollY = window.scrollY + 100;
         for (let i = 0; i < total - 1; i++) {
           if (scrollY >= sectionTops[i] && scrollY < sectionTops[i + 1]) {
-            percent = (i + (scrollY - sectionTops[i]) / (sectionTops[i + 1] - sectionTops[i])) / (total - 1);
+            percent =
+              (i +
+                (scrollY - sectionTops[i]) /
+                  (sectionTops[i + 1] - sectionTops[i])) /
+              (total - 1);
             break;
           }
         }
@@ -1404,15 +1605,16 @@ function App() {
       setShowSticky(window.scrollY > 180);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [sectionRefs]);
 
   // Calculate time for progress bar (0:00 to 4:11)
   const totalSeconds = 4 * 60 + 11;
   const currentSeconds = Math.round(scrollPercent * totalSeconds);
-  const formatTime = s => `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`;
+  const formatTime = (s) =>
+    `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, "0")}`;
 
   const handleProfileClick = () => {
     setShowModal(true);
@@ -1436,43 +1638,65 @@ function App() {
   // Close modal on escape key
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setShowModal(false);
       }
     };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
   }, []);
 
   return (
     <>
       <GlobalStyle />
       <StickyHeader $show={showSticky}>
-        <StickyProfile src={profileImage} alt="Harsh Rathore" onClick={handleProfileClick} />
-        <StickyName>
-          Harsh Rathore
-        </StickyName>
-        <StickySpotifyBtn href={spotifyProfile} target="_blank" rel="noopener noreferrer" title="Open on Spotify">
+        <StickyProfile
+          src={profileImage}
+          alt="Harsh Rathore"
+          onClick={handleProfileClick}
+        />
+        <StickyName>Harsh Rathore</StickyName>
+        <StickySpotifyBtn
+          href={spotifyProfile}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Open on Spotify"
+        >
           <FaSpotify size={20} />
         </StickySpotifyBtn>
-        <StickyDownloadBtn onClick={handleDownloadCV} title="Download CV" style={{ cursor: 'pointer' }}>
+        <StickyDownloadBtn
+          onClick={handleDownloadCV}
+          title="Download CV"
+          style={{ cursor: "pointer" }}
+        >
           <FaDownload size={14} /> CV
         </StickyDownloadBtn>
         <StickyFollowBtn onClick={handleFollowClick}>Connect</StickyFollowBtn>
       </StickyHeader>
       <HeaderGradient>
         <HeaderContent>
-          <ProfileImage src={profileImage} alt="Harsh Rathore" onClick={handleProfileClick} />
+          <ProfileImage
+            src={profileImage}
+            alt="Harsh Rathore"
+            onClick={handleProfileClick}
+          />
           <NameBlock>
-            <h1>
-              Harsh Rathore
-            </h1>
-            <div className="tagline">Music Business | Artist Operations | Live Events & Digital Support</div>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <SpotifyBtn href={spotifyProfile} target="_blank" rel="noopener noreferrer">
+            <h1>Harsh Rathore</h1>
+            <div className="tagline">
+              Music Business | Artist Operations | Live Events & Digital Support
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <SpotifyBtn
+                href={spotifyProfile}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaSpotify size={22} /> Open on Spotify
               </SpotifyBtn>
-              <DownloadCVBtn onClick={handleDownloadCV} style={{ cursor: 'pointer' }}>
+              <DownloadCVBtn
+                onClick={handleDownloadCV}
+                style={{ cursor: "pointer" }}
+              >
                 <FaDownload size={16} /> Download CV
               </DownloadCVBtn>
               <BigFollowBtn onClick={handleFollowClick}>Connect</BigFollowBtn>
@@ -1499,7 +1723,12 @@ function App() {
         </PopularSection>
         <ArtistPickSection onClick={handleArtistPickClick}>
           <ArtistPickTitle>Artist pick</ArtistPickTitle>
-          <ArtistPickCard onClick={() => { handleArtistPickClick(); setShowVideoModal(true); }}>
+          <ArtistPickCard
+            onClick={() => {
+              handleArtistPickClick();
+              setShowVideoModal(true);
+            }}
+          >
             <PickImageBg src={artistPick.image} alt="Artist Pick" />
             <PickImageOverlay />
             <ArtistPickContent>
@@ -1507,29 +1736,86 @@ function App() {
                 <PickProfileImg src={profileImage} alt="Profile" />
                 Watch Halla Bol
               </PickSpeechBubble>
-              <PickDesc style={{ marginTop: 80, fontSize: '1.15rem', fontWeight: 800 }}>RR x Amit Trivedi</PickDesc>
+              <PickDesc
+                style={{ marginTop: 80, fontSize: "1.15rem", fontWeight: 800 }}
+              >
+                RR x Amit Trivedi
+              </PickDesc>
               <PickMeta>Brand Activation</PickMeta>
             </ArtistPickContent>
           </ArtistPickCard>
+
+          {/* Featured Project - Cultural Institution Strategy */}
+          <FeaturedProjectSection>
+            <FeaturedProjectTitle>Featured Project</FeaturedProjectTitle>
+            <FeaturedProjectCard
+              href="https://shillong-chamber-choir-g-wh67dtr.gamma.site/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FeaturedProjectImageBg
+                src="/assets/default/scc.png"
+                alt="Cultural Institution Strategy"
+              />
+              <FeaturedProjectOverlay />
+              <FeaturedProjectContent>
+                <FeaturedProjectName>
+                  Cultural Institution Strategy
+                </FeaturedProjectName>
+                <FeaturedProjectMeta>
+                  Artist Strategy | Digital + Live Ecosystem
+                </FeaturedProjectMeta>
+              </FeaturedProjectContent>
+            </FeaturedProjectCard>
+          </FeaturedProjectSection>
         </ArtistPickSection>
       </MainSection>
       <ResumeSections>
         {popular.map((item, idx) => (
-          <ResumeSection
-            ref={sectionRefs[idx]}
-            id={item.section}
-            key={item.id}
-          >
-            <SectionHeader>{item.title}</SectionHeader>
-            <SectionSub>{item.stat} &middot; {item.duration}</SectionSub>
+          <ResumeSection ref={sectionRefs[idx]} id={item.section} key={item.id}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '9px' }}>
+              <SectionHeader style={{ margin: 0 }}>{item.title}</SectionHeader>
+              {item.id === "culturalStrategy" && item.externalLink && (
+                <a 
+                  href={item.externalLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    color: '#1db954',
+                    textDecoration: 'none',
+                    fontWeight: '700',
+                    fontSize: '0.95rem',
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = '#1db954';
+                    e.target.style.marginBottom = '2px';
+                    e.target.style.color = '#fff';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = '';
+                    e.target.style.marginBottom = '';
+                    e.target.style.color = '#1db954';
+                  }}
+                >
+                  <FaLink size={14} /> View Case Study
+                </a>
+              )}
+            </div>
+            <SectionSub>
+              {item.stat} &middot; {item.duration}
+            </SectionSub>
 
             {/* Enhanced Halla Bol Section - Gallery Layout */}
-            {item.id === 'hallaBol' && item.videoId ? (
+            {item.id === "hallaBol" && item.videoId ? (
               <>
                 {/* Hook Line - The Headline */}
-                {item.hookLine && (
-                  <HallaBolHook>{item.hookLine}</HallaBolHook>
-                )}
+                {item.hookLine && <HallaBolHook>{item.hookLine}</HallaBolHook>}
 
                 {/* Gallery Grid - Video & Tweet side by side */}
                 <GalleryGrid
@@ -1542,7 +1828,11 @@ function App() {
                 >
                   {/* Video Frame */}
                   <VideoFrame
-                    onClick={() => setPlayingVideoId(playingVideoId === item.videoId ? null : item.videoId)}
+                    onClick={() =>
+                      setPlayingVideoId(
+                        playingVideoId === item.videoId ? null : item.videoId,
+                      )
+                    }
                   >
                     {playingVideoId === item.videoId ? (
                       <iframe
@@ -1550,7 +1840,11 @@ function App() {
                         title="Halla Bol - RR Anthem"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
-                        style={{ width: '100%', height: '100%', border: 'none' }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          border: "none",
+                        }}
                       />
                     ) : (
                       <>
@@ -1571,7 +1865,8 @@ function App() {
                   {/* Tweet Frame */}
                   <TweetFrame>
                     <TweetQuote>
-                      "My first ever live show: best feeling ever.<br />
+                      "My first ever live show: best feeling ever.
+                      <br />
                       My most recent live show: best feeling ever."
                     </TweetQuote>
                     <TweetMeta>
@@ -1602,24 +1897,32 @@ function App() {
 
                 {/* Expand Button */}
                 <ExpandButton
-                  className={expandedSections[item.id] ? 'expanded' : ''}
-                  onClick={() => setExpandedSections(prev => ({
-                    ...prev,
-                    [item.id]: !prev[item.id]
-                  }))}
+                  className={expandedSections[item.id] ? "expanded" : ""}
+                  onClick={() =>
+                    setExpandedSections((prev) => ({
+                      ...prev,
+                      [item.id]: !prev[item.id],
+                    }))
+                  }
                 >
-                  {expandedSections[item.id] ? 'Hide Details' : 'See How I Did It'}
+                  {expandedSections[item.id]
+                    ? "Hide Details"
+                    : "See How I Did It"}
                   <FaChevronDown />
                 </ExpandButton>
 
                 {/* Expandable Details */}
                 <ExpandableContent $expanded={expandedSections[item.id]}>
-                  <SectionDetails dangerouslySetInnerHTML={{ __html: item.details }} />
+                  <SectionDetails
+                    dangerouslySetInnerHTML={{ __html: item.details }}
+                  />
                 </ExpandableContent>
               </>
             ) : (
               /* Standard Section Rendering */
-              <SectionDetails dangerouslySetInnerHTML={{ __html: item.details }} />
+              <SectionDetails
+                dangerouslySetInnerHTML={{ __html: item.details }}
+              />
             )}
           </ResumeSection>
         ))}
@@ -1628,9 +1931,10 @@ function App() {
         <VibeLeft>
           <VibeHeading>Open to Music Opportunities</VibeHeading>
           <VibeDesc>
-            Currently building my music industry career through B2B marketing at Doles Music.
-            Open to opportunities in artist marketing, label digital strategy, or music tech.
-            Got a role that needs someone who understands both artists and algorithms? Let's connect.
+            Currently building my music industry career through B2B marketing at
+            Doles Music. Open to opportunities in artist marketing, label
+            digital strategy, or music tech. Got a role that needs someone who
+            understands both artists and algorithms? Let's connect.
           </VibeDesc>
           <VibeContactLinks>
             <VibeContactBtn
@@ -1640,18 +1944,38 @@ function App() {
             >
               <FaEnvelope size={20} /> Email
             </VibeContactBtn>
-            <VibeContactBtn href="https://www.linkedin.com/in/rathoreharsh-o1?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BUDuNIhi8S%2FmKFnXanotECA%3D%3D" target="_blank" rel="noopener noreferrer">
+            <VibeContactBtn
+              href="https://www.linkedin.com/in/rathoreharsh-o1?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BUDuNIhi8S%2FmKFnXanotECA%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaLinkedin size={20} /> LinkedIn
             </VibeContactBtn>
-            <VibeContactBtn style={{ padding: '10px 15px' }} href="https://wa.me/919460150961?text=Hi%20Harsh%2C%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect!" target="_blank" rel="noopener noreferrer">
+            <VibeContactBtn
+              style={{ padding: "10px 15px" }}
+              href="https://wa.me/919460150961?text=Hi%20Harsh%2C%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect!"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaWhatsapp size={20} /> WhatsApp
             </VibeContactBtn>
-            <VibeContactBtn onClick={handleDownloadCV} style={{ cursor: 'pointer' }}>
+            <VibeContactBtn
+              onClick={handleDownloadCV}
+              style={{ cursor: "pointer" }}
+            >
               <FaDownload size={18} /> CV
             </VibeContactBtn>
-            <VibeContactSpotifyBtn href={spotifyProfile} target="_blank" rel="noopener noreferrer">
+            <VibeContactSpotifyBtn
+              href={spotifyProfile}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaSpotify size={22} color="#fff" style={{ flexShrink: 0 }} />
-              <span style={{ fontSize: 14, whiteSpace: 'nowrap', flexShrink: 0 }}>Music Profile</span>
+              <span
+                style={{ fontSize: 14, whiteSpace: "nowrap", flexShrink: 0 }}
+              >
+                Music Profile
+              </span>
             </VibeContactSpotifyBtn>
           </VibeContactLinks>
         </VibeLeft>
@@ -1659,22 +1983,100 @@ function App() {
           <VibeRightRow>
             <FaSpotify size={48} color="#1db954" />
             <SpotifyWave>
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="18" width="4" height="8" rx="2" fill="#1db954" opacity="0.7">
-                  <animate attributeName="height" values="8;18;8" dur="1.2s" repeatCount="indefinite" />
-                  <animate attributeName="y" values="18;8;18" dur="1.2s" repeatCount="indefinite" />
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="3"
+                  y="18"
+                  width="4"
+                  height="8"
+                  rx="2"
+                  fill="#1db954"
+                  opacity="0.7"
+                >
+                  <animate
+                    attributeName="height"
+                    values="8;18;8"
+                    dur="1.2s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="y"
+                    values="18;8;18"
+                    dur="1.2s"
+                    repeatCount="indefinite"
+                  />
                 </rect>
-                <rect x="11" y="14" width="4" height="12" rx="2" fill="#1db954" opacity="0.8">
-                  <animate attributeName="height" values="12;22;12" dur="1.1s" repeatCount="indefinite" />
-                  <animate attributeName="y" values="14;2;14" dur="1.1s" repeatCount="indefinite" />
+                <rect
+                  x="11"
+                  y="14"
+                  width="4"
+                  height="12"
+                  rx="2"
+                  fill="#1db954"
+                  opacity="0.8"
+                >
+                  <animate
+                    attributeName="height"
+                    values="12;22;12"
+                    dur="1.1s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="y"
+                    values="14;2;14"
+                    dur="1.1s"
+                    repeatCount="indefinite"
+                  />
                 </rect>
-                <rect x="19" y="20" width="4" height="6" rx="2" fill="#1db954" opacity="0.6">
-                  <animate attributeName="height" values="6;16;6" dur="1.3s" repeatCount="indefinite" />
-                  <animate attributeName="y" values="20;10;20" dur="1.3s" repeatCount="indefinite" />
+                <rect
+                  x="19"
+                  y="20"
+                  width="4"
+                  height="6"
+                  rx="2"
+                  fill="#1db954"
+                  opacity="0.6"
+                >
+                  <animate
+                    attributeName="height"
+                    values="6;16;6"
+                    dur="1.3s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="y"
+                    values="20;10;20"
+                    dur="1.3s"
+                    repeatCount="indefinite"
+                  />
                 </rect>
-                <rect x="27" y="16" width="4" height="10" rx="2" fill="#1db954" opacity="0.9">
-                  <animate attributeName="height" values="10;20;10" dur="1.05s" repeatCount="indefinite" />
-                  <animate attributeName="y" values="16;0;16" dur="1.05s" repeatCount="indefinite" />
+                <rect
+                  x="27"
+                  y="16"
+                  width="4"
+                  height="10"
+                  rx="2"
+                  fill="#1db954"
+                  opacity="0.9"
+                >
+                  <animate
+                    attributeName="height"
+                    values="10;20;10"
+                    dur="1.05s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="y"
+                    values="16;0;16"
+                    dur="1.05s"
+                    repeatCount="indefinite"
+                  />
                 </rect>
               </svg>
             </SpotifyWave>
@@ -1684,7 +2086,10 @@ function App() {
       </VibeCard>
       <FooterPlayer>
         <PlayerInfo>
-          <PlayerCover src={popular[activeIdx].cover} alt={popular[activeIdx].title} />
+          <PlayerCover
+            src={popular[activeIdx].cover}
+            alt={popular[activeIdx].title}
+          />
           <PlayerText>
             <PlayerTitle>Experience Timeline</PlayerTitle>
             <PlayerSub>Scroll to navigate</PlayerSub>
@@ -1693,15 +2098,25 @@ function App() {
         </PlayerInfo>
         <PlayerCenter>
           <PlayerControls>
-            <PlayerButton><FaRandom /></PlayerButton>
-            <PlayerButton><FaStepBackward /></PlayerButton>
-            <PlayerPlayButton><FaPause /></PlayerPlayButton>
-            <PlayerButton><FaStepForward /></PlayerButton>
+            <PlayerButton>
+              <FaRandom />
+            </PlayerButton>
+            <PlayerButton>
+              <FaStepBackward />
+            </PlayerButton>
+            <PlayerPlayButton>
+              <FaPause />
+            </PlayerPlayButton>
+            <PlayerButton>
+              <FaStepForward />
+            </PlayerButton>
           </PlayerControls>
           <PlayerProgressRow>
             <PlayerTime>{formatTime(currentSeconds)}</PlayerTime>
             <PlayerBar>
-              <PlayerBarProgress style={{ width: `${Math.round(scrollPercent * 100)}%` }} />
+              <PlayerBarProgress
+                style={{ width: `${Math.round(scrollPercent * 100)}%` }}
+              />
             </PlayerBar>
             <PlayerTime>{formatTime(totalSeconds)}</PlayerTime>
           </PlayerProgressRow>
@@ -1718,7 +2133,7 @@ function App() {
       </FooterPlayer>
 
       <ModalOverlay $show={showModal} onClick={handleCloseModal}>
-        <ModalContent $show={showModal} onClick={e => e.stopPropagation()}>
+        <ModalContent $show={showModal} onClick={(e) => e.stopPropagation()}>
           <CloseButton onClick={handleCloseModal}>
             <FaTimes />
           </CloseButton>
@@ -1730,11 +2145,15 @@ function App() {
       <VideoModalOverlay
         $show={showVideoModal}
         onClick={() => setShowVideoModal(false)}
-        style={{ pointerEvents: showVideoModal ? 'auto' : 'none' }}
+        style={{ pointerEvents: showVideoModal ? "auto" : "none" }}
       >
-        <VideoModalContent onClick={e => e.stopPropagation()}>
+        <VideoModalContent onClick={(e) => e.stopPropagation()}>
           <VideoIframe
-            src={showVideoModal ? "https://www.youtube.com/embed/clIYzqDDyY4?autoplay=1" : undefined}
+            src={
+              showVideoModal
+                ? "https://www.youtube.com/embed/clIYzqDDyY4?autoplay=1"
+                : undefined
+            }
             title="Halla Bol - RR Anthem"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -1747,7 +2166,10 @@ function App() {
         $show={showTweetModal}
         onClick={() => setShowTweetModal(false)}
       >
-        <ModalContent $show={showTweetModal} onClick={e => e.stopPropagation()}>
+        <ModalContent
+          $show={showTweetModal}
+          onClick={(e) => e.stopPropagation()}
+        >
           <CloseButton onClick={() => setShowTweetModal(false)}>
             <FaTimes />
           </CloseButton>
@@ -1760,4 +2182,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
