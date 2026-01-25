@@ -1482,6 +1482,196 @@ const VideoIframe = styled.iframe`
   }
 `;
 
+// ============================================
+// ANNOUNCEMENT BANNER - Recent Work
+// ============================================
+const AnnouncementBanner = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #1db954 0%, #1ed760 100%);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  z-index: 300;
+  transform: translateY(${(props) => (props.$show ? "0" : "-100%")});
+  transition: transform 0.3s ease;
+  @media (max-width: 600px) {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+`;
+
+const BannerContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  @media (max-width: 600px) {
+    gap: 8px;
+  }
+`;
+
+const BannerNewBadge = styled.span`
+  background: #000;
+  color: #1db954;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+`;
+
+const BannerLink = styled.span`
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+const BannerClose = styled.button`
+  background: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  position: absolute;
+  right: 16px;
+  &:hover {
+    opacity: 1;
+  }
+  @media (max-width: 600px) {
+    right: 8px;
+  }
+`;
+
+// ============================================
+// WHAT'S NEW MODAL - First Visit Showcase
+// ============================================
+const WhatsNewOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 400;
+  opacity: ${(props) => (props.$show ? 1 : 0)};
+  pointer-events: ${(props) => (props.$show ? "auto" : "none")};
+  transition: opacity 0.3s ease;
+`;
+
+const WhatsNewModal = styled.div`
+  background: #282828;
+  border-radius: 16px;
+  max-width: 420px;
+  width: 90%;
+  padding: 24px;
+  position: relative;
+  transform: ${(props) => (props.$show ? "scale(1)" : "scale(0.95)")};
+  transition: transform 0.3s ease;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+`;
+
+const WhatsNewClose = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+`;
+
+const WhatsNewThumbnail = styled.img`
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  @media (max-width: 480px) {
+    height: 160px;
+  }
+`;
+
+const WhatsNewTitle = styled.h3`
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+  }
+`;
+
+const WhatsNewStat = styled.div`
+  color: #1db954;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+`;
+
+const WhatsNewHeading = styled.div`
+  color: #b3b3b3;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+`;
+
+const WhatsNewDesc = styled.p`
+  color: #b3b3b3;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+`;
+
+const WhatsNewButton = styled.button`
+  width: 100%;
+  background: #1db954;
+  color: #000;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  &:hover {
+    transform: scale(1.02);
+    background: #1ed760;
+  }
+`;
+
 function App() {
   const [popular, setPopular] = useState(defaultPopular);
   const [sectionRefs, setSectionRefs] = useState([]);
@@ -1496,6 +1686,60 @@ function App() {
   const [showTweetModal, setShowTweetModal] = useState(false);
   const [tweetModalImage, setTweetModalImage] = useState(null);
   const [galleryScrollIndex, setGalleryScrollIndex] = useState(0);
+
+  // Recent Work Showcase states
+  const [showWhatsNewModal, setShowWhatsNewModal] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
+
+  // Get the featured project data (Cultural Institution Strategy)
+  const featuredProject = defaultPopular.find(item => item.id === "culturalStrategy");
+
+  // Check localStorage and show modal/banner on first visit
+  useEffect(() => {
+    const hasSeenModal = localStorage.getItem("hasSeenWhatsNewModal");
+    // const hasDismissedBanner = localStorage.getItem("hasDismissedBanner");
+
+    if (!hasSeenModal) {
+      // Small delay for better UX
+      setTimeout(() => setShowWhatsNewModal(true), 500);
+    }
+
+    // if (!hasDismissedBanner) {
+    setShowBanner(true);
+    // }
+  }, []);
+
+  // Handle modal dismiss
+  const handleWhatsNewModalClose = () => {
+    setShowWhatsNewModal(false);
+    localStorage.setItem("hasSeenWhatsNewModal", "true");
+  };
+
+  // Handle modal CTA click
+  const handleWhatsNewCTA = () => {
+    handleWhatsNewModalClose();
+    // Find the index of culturalStrategy in popular
+    const idx = popular.findIndex(item => item.id === "culturalStrategy");
+    if (idx !== -1 && sectionRefs[idx]?.current) {
+      setTimeout(() => {
+        sectionRefs[idx].current.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  };
+
+  // Handle banner dismiss
+  const handleBannerClose = () => {
+    setShowBanner(false);
+    localStorage.setItem("hasDismissedBanner", "true");
+  };
+
+  // Handle banner link click - scrolls to section
+  const handleBannerClick = () => {
+    const idx = popular.findIndex(item => item.id === "culturalStrategy");
+    if (idx !== -1 && sectionRefs[idx]?.current) {
+      sectionRefs[idx].current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   // Initialize section refs
   useEffect(() => {
@@ -1592,7 +1836,7 @@ function App() {
             percent =
               (i +
                 (scrollY - sectionTops[i]) /
-                  (sectionTops[i + 1] - sectionTops[i])) /
+                (sectionTops[i + 1] - sectionTops[i])) /
               (total - 1);
             break;
           }
@@ -1640,16 +1884,32 @@ function App() {
     const handleEscape = (e) => {
       if (e.key === "Escape") {
         setShowModal(false);
+        if (showWhatsNewModal) {
+          handleWhatsNewModalClose();
+        }
       }
     };
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
-  }, []);
+  }, [showWhatsNewModal]);
 
   return (
     <>
       <GlobalStyle />
-      <StickyHeader $show={showSticky}>
+
+      {/* Announcement Banner */}
+      <AnnouncementBanner $show={showBanner} onClick={handleBannerClick} style={{ cursor: 'pointer' }}>
+        <BannerContent>
+          <BannerNewBadge>New</BannerNewBadge>
+          <span>Cultural Institution Strategy</span>
+          <BannerLink>View →</BannerLink>
+        </BannerContent>
+        <BannerClose onClick={(e) => { e.stopPropagation(); handleBannerClose(); }}>
+          <FaTimes size={14} />
+        </BannerClose>
+      </AnnouncementBanner>
+
+      <StickyHeader $show={showSticky} style={{ top: showBanner ? '40px' : '0' }}>
         <StickyProfile
           src={profileImage}
           alt="Harsh Rathore"
@@ -1775,37 +2035,7 @@ function App() {
           <ResumeSection ref={sectionRefs[idx]} id={item.section} key={item.id}>
             <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '9px' }}>
               <SectionHeader style={{ margin: 0 }}>{item.title}</SectionHeader>
-              {item.id === "culturalStrategy" && item.externalLink && (
-                <a 
-                  href={item.externalLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    color: '#1db954',
-                    textDecoration: 'none',
-                    fontWeight: '700',
-                    fontSize: '0.95rem',
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    transition: 'all 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = '#1db954';
-                    e.target.style.marginBottom = '2px';
-                    e.target.style.color = '#fff';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = '';
-                    e.target.style.marginBottom = '';
-                    e.target.style.color = '#1db954';
-                  }}
-                >
-                  <FaLink size={14} /> View Case Study
-                </a>
-              )}
+
             </div>
             <SectionSub>
               {item.stat} &middot; {item.duration}
@@ -1917,6 +2147,57 @@ function App() {
                     dangerouslySetInnerHTML={{ __html: item.details }}
                   />
                 </ExpandableContent>
+              </>
+            ) : item.id === "culturalStrategy" && item.externalLink ? (
+              /* Cultural Strategy Section - Thumbnail with View Link */
+              <>
+                <a
+                  href={item.externalLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'block',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    position: 'relative',
+                    marginBottom: '24px',
+                    textDecoration: 'none',
+                    maxWidth: '400px',
+                  }}
+                >
+                  <img
+                    src={item.thumbnailImage || item.cover}
+                    alt={item.title}
+                    style={{
+                      width: '100%',
+                      height: '200px',
+                      objectFit: 'cover',
+                      display: 'block',
+                      transition: 'transform 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => e.target.style.transform = 'scale(1.03)'}
+                    onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                  />
+                  <div style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    padding: '16px',
+                    background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
+                    color: '#fff',
+                    fontSize: '0.9rem',
+                    fontWeight: '600',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                  }}>
+                    <FaLink size={14} /> View Case Study →
+                  </div>
+                </a>
+                <SectionDetails
+                  dangerouslySetInnerHTML={{ __html: item.details }}
+                />
               </>
             ) : (
               /* Standard Section Rendering */
@@ -2178,6 +2459,32 @@ function App() {
           )}
         </ModalContent>
       </ModalOverlay>
+
+      {/* What's New Modal - First Visit */}
+      <WhatsNewOverlay $show={showWhatsNewModal} onClick={handleWhatsNewModalClose}>
+        <WhatsNewModal $show={showWhatsNewModal} onClick={(e) => e.stopPropagation()}>
+          <WhatsNewClose onClick={handleWhatsNewModalClose}>
+            <FaTimes size={16} />
+          </WhatsNewClose>
+          {featuredProject && (
+            <>
+              <WhatsNewHeading>What's New</WhatsNewHeading>
+              <WhatsNewThumbnail
+                src={featuredProject.thumbnailImage || featuredProject.cover}
+                alt={featuredProject.title}
+              />
+              <WhatsNewTitle>{featuredProject.title}</WhatsNewTitle>
+              <WhatsNewStat>{featuredProject.stat}</WhatsNewStat>
+              <WhatsNewDesc>
+                A full-stack strategy project for a legacy Indian vocal ensemble, covering digital performance, collaborations, live productions, and long-term IP development.
+              </WhatsNewDesc>
+              <WhatsNewButton onClick={handleWhatsNewCTA}>
+                Check it out →
+              </WhatsNewButton>
+            </>
+          )}
+        </WhatsNewModal>
+      </WhatsNewOverlay>
     </>
   );
 }
