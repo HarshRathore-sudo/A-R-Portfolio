@@ -24,7 +24,7 @@ const StyledVibeCard = styled.div`
   @media (max-width: 800px) {
     flex-direction: column;
     padding: 24px 16px;
-    margin: 80px 16px 110px 16px;
+    margin: 80px 16px 200px 16px;
     border-radius: 16px;
   }
 `;
