@@ -35,10 +35,7 @@ const PopularRow = styled.div`
   }
   &:hover .play-overlay {
     opacity: 1;
-    transform: scale(1);
-  }
-  &:hover .pop-num {
-    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
   }
   @media (max-width: 600px) {
     padding: 8px 0;
@@ -70,17 +67,18 @@ const PopNum = styled.div`
 
 const PlayOverlay = styled.div`
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   opacity: 0;
-  transform: scale(0.8);
   transition: opacity 0.2s ease, transform 0.2s ease;
-  @media (max-width: 600px) {
-    font-size: 0.75rem;
-  }
+  z-index: 10;
+  pointer-events: none;
 `;
 
 const CoverWrapper = styled.div`
@@ -97,6 +95,9 @@ const PopCover = styled.img`
   border-radius: 8px;
   object-fit: cover;
   transition: filter 0.2s ease;
+  &:hover {
+    filter: brightness(0.7);
+  }
   @media (max-width: 600px) {
     width: 40px;
     height: 40px;
@@ -130,12 +131,12 @@ function PopularSection({ popular, activeIdx, onRowClick }) {
           >
             <PopNumWrapper>
               <PopNum className="pop-num">{idx + 1}</PopNum>
-              <PlayOverlay className="play-overlay">
-                <FaPlay />
-              </PlayOverlay>
             </PopNumWrapper>
             <CoverWrapper>
               <PopCover src={item.cover} alt={item.title} />
+              <PlayOverlay className="play-overlay">
+                <FaPlay />
+              </PlayOverlay>
             </CoverWrapper>
             <PopTitle>{item.title}</PopTitle>
           </PopularRow>
