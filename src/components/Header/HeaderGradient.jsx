@@ -1,6 +1,6 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { FaSpotify, FaDownload, FaCheckCircle } from 'react-icons/fa';
+import styled from 'styled-components';
+import { FaSpotify, FaDownload } from 'react-icons/fa';
 
 const StyledHeaderGradient = styled.div`
   width: 100vw;
@@ -116,10 +116,7 @@ const StatItem = styled.div`
   }
 `;
 
-const pulseGlow = keyframes`
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-`;
+
 
 const StatNumber = styled.span`
   font-size: 1.5rem;
@@ -144,17 +141,7 @@ const StatLabel = styled.span`
   }
 `;
 
-const VerifiedBadge = styled.span`
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #3b82f6;
-  font-size: 1.5rem;
-  animation: ${pulseGlow} 2s ease-in-out infinite;
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
-  }
-`;
+
 
 const SpotifyBtn = styled.a`
   display: inline-flex;
